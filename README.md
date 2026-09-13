@@ -1,214 +1,162 @@
-<div align="center">
+# 🏥 RS Muhammad Ali - Website Resmi Rumah Sakit Modern
 
-# AI Website Cloner Template
+[![Next.js](https://img.shields.io/badge/Next.js-16.3.0-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.2.4-blue?style=for-the-badge&logo=react)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178c6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![License](https://img.shields.io/badge/License-MIT-emerald?style=for-the-badge)](LICENSE)
 
-### Clone any website with one command
+> **Rumah Sakit Muhammad Ali** — *Pusat Layanan Kesehatan Terpadu, Modern & Terpercaya. Melayani Dengan Hati.*
 
-Give your AI coding agent a URL and watch it recreate the website as a clean Next.js app.
-
-**Best results with [Claude Code](https://docs.anthropic.com/en/docs/claude-code) + Opus 5. Works with Codex, Cursor, Gemini, and more.**
-
-[![Use this template](https://img.shields.io/badge/Use_this_template-Create_your_copy-2ea44f?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JCodesMore/ai-website-cloner-template/generate) [![Discord](https://img.shields.io/badge/Join_the_community-Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/hrTSX5yTpB)
-
-[Quick Start](#quick-start) · [Watch Demo](#demo) · [Supported Platforms](#supported-platforms)
-
-<a href="https://github.com/JCodesMore/ai-website-cloner-template/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License" /></a> <a href="https://github.com/JCodesMore/ai-website-cloner-template"><img src="https://img.shields.io/github/stars/JCodesMore/ai-website-cloner-template?style=flat" alt="Stars" /></a> <img src="https://img.shields.io/endpoint?url=https://gittokens.rsamf.com/badge/JCodesMore/ai-website-cloner-template" alt="tokens" />
-
-  <a href="https://trendshift.io/repositories/24302?utm_source=repository-badge&amp;utm_medium=badge&amp;utm_campaign=badge-repository-24302" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/repositories/24302" alt="JCodesMore%2Fai-website-cloner-template | Trendshift" width="250" height="55" /></a> <a href="https://www.star-history.com/jcodesmore/ai-website-cloner-template/"><picture><source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/badge?repo=JCodesMore/ai-website-cloner-template&amp;theme=dark" /><source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/badge?repo=JCodesMore/ai-website-cloner-template" /><img alt="Star History Global Rank" src="https://api.star-history.com/badge?repo=JCodesMore/ai-website-cloner-template" width="216" height="55" /></picture></a>
-
-<br />
-<sub><strong>SPONSORED BY</strong></sub>
-<br /><br />
-<a href="https://www.rapidproxy.io/?ref=JCM"><img src="docs/assets/sponsors/rapidproxy-banner.png" alt="RapidProxy residential proxy service" width="680" /></a>
-<br />
-<sub>Power your scraping and automation with 90M+ residential IPs, 500MB free traffic, and non-expiring bandwidth. <a href="https://www.rapidproxy.io/?ref=JCM">Explore RapidProxy →</a></sub>
-<br /><br />
-<a href="https://www.atlascloud.ai/?utm_source=github&amp;utm_medium=sponsor&amp;utm_campaign=ai-website-cloner-template">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/assets/sponsors/atlas-cloud-logo-white.svg" />
-    <source media="(prefers-color-scheme: light)" srcset="docs/assets/sponsors/atlas-cloud-logo.svg" />
-    <img src="docs/assets/sponsors/atlas-cloud-logo.svg" alt="Atlas Cloud" width="240" />
-  </picture>
-</a>
-<br />
-<sub>Generate AI images, video, audio, and 3D assets through one API. <a href="https://www.atlascloud.ai/?utm_source=github&amp;utm_medium=sponsor&amp;utm_campaign=ai-website-cloner-template">Explore Atlas Cloud →</a></sub>
-
-</div>
+Website profil dan portal layanan kesehatan modern untuk **RS Muhammad Ali** (berbasis kloning & modernisasi komprehensif dari website RS Jakarta). Dibangun menggunakan arsitektur **Next.js 16 (App Router)**, **React 19**, dan **Tailwind CSS v4** dengan performa tinggi, responsif *mobile-first*, serta integrasi sistem reservasi janji temu pasien online.
 
 ---
 
-## Demo
+## 🌟 Fitur Utama
 
-[![Watch the demo](docs/design-references/comparison.png)](https://youtu.be/O669pVZ_qr0)
+### 1. 🚑 Layanan Gawat Darurat (UGD) & Ambulans 24 Jam
+- Hotline darurat siaga satu tombol: `(021) 573 2241`.
+- Banner panggilan respon cepat dan ambulans berstandar ICU.
+- Tombol aksi darurat melayang (*floating emergency button*).
 
-> Click the image above to watch the full demo on YouTube.
+### 2. 🩺 Pencarian & Jadwal Praktik Dokter Spesialis
+- Pencarian cerdas berdasarkan nama dokter, poliklinik spesialis, atau kata kunci keluhan.
+- Filter berdasarkan hari praktik (Senin s/d Minggu, termasuk program *Sunday Clinic*).
+- Informasi profil dokter, gelar, keahlian subspesialis, dan jadwal poliklinik.
+- Tombol integrasi **"Buat Janji Temu"** otomatis memilih dokter terkait.
 
-## Quick Start
+### 3. 🏥 Pusat Layanan Unggulan (*Centers of Excellence*)
+- **Muhammad Ali Eye Center** (Operasi Katarak Phacoemulsification, Vitreo-Retina, Glaukoma).
+- **Muhammad Ali Orthopedic Center** (Arthroscopy Lutut/Bahu, Rekonstruksi Sendi, Terapi Secretome).
+- **Muhammad Ali Brain & Spine Center** (Teknologi Minimal Invasif BESS untuk Saraf Terjepit).
+- **Muhammad Ali Dental Clinic** (Klinik Spesialis Bedah Mulut, Konservasi Gigi, Ortodonti).
+- **Muhammad Ali Endoscopy Center** (Gastroskopi & Kolonoskopi Berdefinisi Tinggi).
+- **Muhammad Ali Urology Center** (Pemecah Batu Ginjal ESWL Tanpa Operasi & Terapi Prostat).
 
-> **Important:** Start by making your own copy with GitHub's **Use this template** button. Do not clone this template repository directly for your website project, and do not open pull requests here with your generated website.
+### 4. 🧪 12 Fasilitas & Penunjang Medis Terintegrasi
+- Rawat Jalan Multi-Spesialis
+- Rawat Inap (Kamar VVIP, VIP, Kelas 1, 2, 3)
+- Medical Check Up (One-Stop Service)
+- Unit Hemodialisa (Cuci Darah Modern)
+- Laboratorium 24 Jam
+- Kamar Operasi Modular Steril (HEPA Filter)
+- Fisioterapi & Rehabilitasi Medik
+- Radiologi & Imaging (MRI 1.5 Tesla, CT-Scan 128 Slice, USG 4D)
+- Farmasi 24 Jam & Layanan Antar Obat
+- Sports Medicine & Penanganan Cedera Olahraga
+- UGD 24 Jam
+- JBHC (Akupuntur Medik & Holistic Care)
 
-1. **Create your own repository from this template**
+### 5. 📅 Sistem Booking Janji Temu Online (`BookingModal`)
+- Alur reservasi 4 langkah interaktif:
+  1. Pilih Poliklinik & Dokter Spesialis.
+  2. Pilih Tanggal Rencana Kunjungan.
+  3. Pengisian Data Pasien & Metode Pembayaran (Umum, BPJS Kesehatan, Asuransi Swasta).
+  4. Terbit **Nomor Booking Resmi** (`RSMA-XXXXXX`) dengan tombol konfirmasi langsung ke WhatsApp loket pendaftaran.
 
-   On the GitHub page for this project, click **Use this template**, then click **Create a new repository**.
+### 6. 🏷️ Promo & Paket Medical Check Up (MCU)
+- Tampilan kartu promo interaktif dengan penanda kategori (*Rehabilitasi, MCU, Pemeriksaan, Tindakan*).
+- Diskon Happy Hour MRI Non-Kontras 17%, Promo Fisioterapi, Paket MCU Lansia Sehat Rp 599.000, Vaksinasi Flu, dan Skrining Vitamin D.
 
-   Give your new repository a name, choose whether it should be public or private, then click **Create repository**. If GitHub shows an **Include all branches** option, you can leave it off.
+### 7. 📰 Edukasi Kesehatan & Testimoni Video Pasien
+- Artikel kesehatan terverifikasi dokter spesialis (BESS Saraf Terjepit, Kesehatan Gigi, Deteksi Mata, Arthroscopy Lutut).
+- Modal pembaca artikel interaktif.
+- Kisah kesembuhan pasien nyata dengan pemutar video testimoni.
 
-   This gives you your own separate project to work in, so your website changes stay in your account instead of coming back to the main template.
+### 8. 🛡️ Kerjasama Asuransi & Pembayaran Cashless
+- Kerjasama rekanan BPJS Kesehatan, BPJS Ketenagakerjaan, serta puluhan asuransi terkemuka (Prudential, Allianz, AIA, Manulife, Sinarmas, Mandiri Inhealth, AdMedika, dll.).
 
-2. **Open your new repository on your computer**
+---
 
-   After GitHub creates your copy, open that new repository. Click **Code** and open or clone your new repository with your preferred coding tool.
+## 🛠️ Tech Stack
 
-   If you use the terminal, the command will look like this:
+- **Framework:** Next.js 16 (App Router, Turbopack)
+- **Library UI:** React 19
+- **Bahasa:** TypeScript (Strict Mode)
+- **Styling:** Tailwind CSS v4 & tw-animate-css
+- **Iconography:** Lucide React & Custom Medical SVG Icons
+- **Font:** Geist Sans & Geist Mono (Google Fonts)
 
-   ```bash
-   git clone https://github.com/YOUR-USERNAME/YOUR-NEW-REPOSITORY.git
-   cd YOUR-NEW-REPOSITORY
-   ```
+---
 
-3. **Install dependencies**
-   ```bash
-   npm install
-   ```
-4. **Start your AI agent** — Claude Code recommended:
-   ```bash
-   claude --chrome
-   ```
-5. **Run the skill**:
-   ```
-   /clone-website <target-url1> [<target-url2> ...]
-   ```
-6. **Customize** (optional) — after the base clone is built, modify as needed
+## 📁 Struktur Direktori
 
-> Most supported clients expose `/clone-website` directly. If your client activates skills from natural-language requests, enter `Clone <target-url> using the clone-website workflow`. Project instructions are in `AGENTS.md`.
-
-## Supported Platforms
-
-| Agent                                                         | Status                     |
-| ------------------------------------------------------------- | -------------------------- |
-| [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | **Recommended** — Opus 5   |
-| [Codex CLI](https://github.com/openai/codex)                  | Supported                  |
-| [OpenCode](https://opencode.ai/)                              | Supported                  |
-| [GitHub Copilot](https://github.com/features/copilot)         | Supported                  |
-| [Kiro](https://kiro.dev/)                                    | Supported                  |
-| [Cursor](https://cursor.com/)                                 | Supported                  |
-| [Windsurf](https://codeium.com/windsurf)                      | Supported                  |
-| [Gemini CLI](https://github.com/google-gemini/gemini-cli)     | Supported                  |
-| [Cline](https://github.com/cline/cline)                       | Supported                  |
-| [Roo Code](https://github.com/RooCodeInc/Roo-Code)            | Supported                  |
-| [Continue](https://continue.dev/)                             | Supported                  |
-| [Amazon Q](https://aws.amazon.com/q/developer/)               | Supported                  |
-| [Augment Code](https://www.augmentcode.com/)                  | Supported                  |
-
-## Prerequisites
-
-- [Node.js](https://nodejs.org/) 24+
-- An AI coding agent (see [Supported Platforms](#supported-platforms))
-
-## Tech Stack
-
-- **Next.js 16** — App Router, React 19, TypeScript strict
-- **shadcn/ui** — Radix primitives + Tailwind CSS v4
-- **Tailwind CSS v4** — oklch design tokens
-- **Lucide React** — default icons (replaced by extracted SVGs during cloning)
-
-## How It Works
-
-The `/clone-website` skill runs a multi-phase pipeline:
-
-```mermaid
-flowchart LR
-    P1["1. Reconnaissance"] --> P2["2. Foundation"]
-    P2 --> P3["3. Component Specs"]
-    P3 --> P4["4. Parallel Build"]
-    P4 --> P5["5. Assembly and QA"]
+```text
+rs-muhammad-ali/
+├── public/
+│   └── images/               # Aset gambar lokal (banner, promo, ikon layanan, dokter)
+├── src/
+│   ├── app/
+│   │   ├── favicon.ico
+│   │   ├── globals.css       # Desain token warna hijau rumah sakit & gaya dasar
+│   │   ├── layout.tsx        # Root layout, metadata SEO RS Muhammad Ali
+│   │   └── page.tsx          # Halaman utama landing page
+│   ├── components/
+│   │   ├── AboutSection.tsx            # Profil sejarah, visi-misi, akreditasi KARS
+│   │   ├── ArticleSection.tsx          # Artikel edukasi kesehatan + modal reader
+│   │   ├── BookingModal.tsx            # Modal wizard reservasi pasien online
+│   │   ├── CenterOfExcellence.tsx      # Tab pusat layanan unggulan
+│   │   ├── DoctorSearchSection.tsx     # Filter pencarian dokter & jadwal
+│   │   ├── EmergencyBanner.tsx         # Banner gawat darurat & kontak UGD
+│   │   ├── FloatingActions.tsx         # Tombol cepat WhatsApp & UGD
+│   │   ├── Footer.tsx                  # Footer resmi, navigasi & hak cipta
+│   │   ├── HeroSlider.tsx              # Carousel banner beranda
+│   │   ├── InsurancePartners.tsx       # Mitra asuransi & BPJS
+│   │   ├── Logo.tsx                    # Logo SVG resmi RS Muhammad Ali
+│   │   ├── Navbar.tsx                  # Navigasi sticky, top bar & drawer mobile
+│   │   ├── PromoSection.tsx            # Daftar paket promo & MCU
+│   │   ├── QuickActionCards.tsx        # 4 Kartu aksi cepat di bawah hero
+│   │   ├── ServicesSection.tsx         # 12 Layanan penunjang + modal info
+│   │   ├── SocialIcons.tsx             # Ikon media sosial (FB, IG, YT)
+│   │   └── TestimonialVideoSection.tsx # Cerita kesembuhan pasien + modal video
+│   ├── data/
+│   │   └── hospitalData.ts   # Database lokal data dokter, layanan, promo, & artikel
+│   └── lib/
+│       └── utils.ts          # Helper classname merge (cn)
+├── package.json
+└── tsconfig.json
 ```
 
-1. **Reconnaissance** — screenshots, design token extraction, interaction sweep (scroll, click, hover, responsive)
-2. **Foundation** — updates fonts, colors, globals, downloads all assets
-3. **Component Specs** — writes detailed spec files (`docs/research/components/`) with exact computed CSS values, states, behaviors, and content
-4. **Parallel Build** — dispatches builder agents in git worktrees, one per section/component
-5. **Assembly & QA** — merges worktrees, wires up the page, runs visual diff against the original
+---
 
-Each builder agent receives the full component specification inline — exact `getComputedStyle()` values, interaction models, multi-state content, responsive breakpoints, and asset paths. No guessing.
+## 🚀 Memulai Proyek (Getting Started)
 
-## Use Cases
+### Prasyarat
+- Node.js versi 20+ (direkomendasikan Node.js LTS)
+- npm / yarn / pnpm
 
-- **Platform migration** — rebuild a site you own from WordPress/Webflow/Squarespace into a modern Next.js codebase
-- **Lost source code** — your site is live but the repo is gone, the developer left, or the stack is legacy. Get the code back in a modern format
-- **Learning** — deconstruct how production sites achieve specific layouts, animations, and responsive behavior by working with real code
-
-## Not Intended For
-
-- **Phishing or impersonation** — this project must not be used for deceptive purposes, impersonation, or any activity that breaks the law.
-- **Passing off someone's design as your own** — logos, brand assets, and original copy belong to their owners.
-- **Violating terms of service** — some sites explicitly prohibit scraping or reproduction. Check first.
-
-## Project Structure
-
-```
-src/
-  app/              # Next.js routes
-  components/       # React components
-    ui/             # shadcn/ui primitives
-    icons.tsx       # Extracted SVG icons
-  lib/utils.ts      # cn() utility
-  types/            # TypeScript interfaces
-  hooks/            # Custom React hooks
-public/
-  images/           # Downloaded images from target
-  videos/           # Downloaded videos from target
-  seo/              # Favicons, OG images
-docs/
-  research/         # Extraction output & component specs
-  design-references/ # Screenshots
-scripts/
-  sync-agent-rules.sh  # Regenerate agent instruction files
-  sync-skills.mjs      # Regenerate /clone-website for all platforms
-.kiro/skills/          # Generated Kiro workspace skill
-.cline/skills/         # Generated Cline workspace skill
-.roo/skills/           # Generated Roo Code workspace skill
-.roo/commands/         # Generated Roo Code slash command
-AGENTS.md           # Agent instructions (single source of truth)
-CLAUDE.md           # Claude Code config (imports AGENTS.md)
-GEMINI.md           # Gemini CLI config (imports AGENTS.md)
-```
-
-## Commands
-
+### 1. Instalasi Dependensi
 ```bash
-npm run dev    # Start dev server
-npm run build  # Production build
-npm run lint   # ESLint check
-npm run typecheck # TypeScript check
-npm run check  # Run lint + typecheck + build
+npm install
 ```
 
-### If using docker
-
+### 2. Jalankan Server Pengembangan
 ```bash
-docker compose up app --build # build and run the app
-docker compose up dev --build # run the app in dev mode on port 3001
+npm run dev
 ```
+Buka peramban Anda di alamat [http://localhost:3000](http://localhost:3000).
 
-## Updating for Other Platforms
+### 3. Pemeriksaan Kode & Validasi
+```bash
+npm run check
+```
+Perintah ini akan menjalankan:
+- `npm run lint` — Pengecekan standar kode ESLint
+- `npm run typecheck` — Pengecekan tipe ketat TypeScript (`tsc --noEmit`)
+- `npm run build` — Kompilasi build produksi Next.js
 
-Two source-of-truth files power all platform support. Edit the source, then run the sync script:
+---
 
-| What                   | Source of truth                         | Sync command                       |
-| ---------------------- | --------------------------------------- | ---------------------------------- |
-| Project instructions   | `AGENTS.md`                             | `bash scripts/sync-agent-rules.sh` |
-| `/clone-website` skill | `.claude/skills/clone-website/SKILL.md` | `node scripts/sync-skills.mjs`     |
+## 📞 Informasi Kontak & Lokasi
 
-Each script regenerates the platform-specific copies automatically. Agents that read the source files natively need no regeneration.
+- **Alamat:** Jl. Garnisun No. 1, Karet Semanggi, Setiabudi, Jakarta Selatan 12930
+- **Telepon Pendaftaran:** (021) 573 2241
+- **UGD & Ambulans 24 Jam:** (021) 573 2241
+- **WhatsApp Customer Care:** +62 811-9722-241
+- **Email:** info@rsmuhammadali.co.id
 
+---
 
-## Star History
+## 📄 Lisensi
 
-![Star History Chart](docs/assets/star-history.png)
-
-## License
-
-MIT
-
-<sub>Translations: <a href="README.ja.md">日本語</a> · <a href="README.zh-CN.md">Simplified Chinese</a></sub>
+Proyek ini dilisensikan di bawah lisensi **MIT**. Hak Cipta © 2026 RS Muhammad Ali. All Rights Reserved.

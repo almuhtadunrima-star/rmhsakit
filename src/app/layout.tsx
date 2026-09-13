@@ -13,8 +13,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Website Clone",
-  description: "Pixel-perfect website clone",
+  title: "RS Muhammad Ali - Pusat Layanan Kesehatan Terpadu & Terpercaya",
+  description:
+    "Website resmi Rumah Sakit Muhammad Ali dengan 120+ dokter spesialis & subspesialis, Centers of Excellence, UGD 24 Jam (021) 573 2241, dan pendaftaran janji temu dokter online.",
+  keywords: [
+    "RS Muhammad Ali",
+    "Rumah Sakit Muhammad Ali",
+    "Dokter Spesialis",
+    "UGD 24 Jam",
+    "Eye Center",
+    "Orthopedic Center",
+    "Brain and Spine Center",
+    "Endoskopi BESS",
+    "MCU",
+    "Medical Check Up",
+  ],
 };
 
 export default function RootLayout({
@@ -24,10 +37,12 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      lang="id"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col font-sans bg-white text-slate-900 selection:bg-emerald-100 selection:text-emerald-900">
+        {children}
+      </body>
     </html>
   );
 }
