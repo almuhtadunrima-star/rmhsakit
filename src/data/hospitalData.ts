@@ -40,11 +40,18 @@ export interface Doctor {
 
 export interface ServiceItem {
   id: string;
+  slug: string;
   name: string;
+  category: string;
   icon: string;
   description: string;
   longDescription: string;
   features: string[];
+  procedures: string[];
+  hours: string;
+  location: string;
+  doctorCount: number;
+  badge?: string;
 }
 
 export interface CenterOfExcellenceItem {
@@ -71,13 +78,67 @@ export interface PromoItem {
 
 export interface ArticleItem {
   id: string;
+  slug: string;
   title: string;
   excerpt: string;
-  category: string;
+  category: "Kesehatan" | "Tips Kesehatan" | "Informasi Rumah Sakit" | "Edukasi Islami" | "Berita";
   date: string;
   readTime: string;
   image: string;
   content: string;
+  author: string;
+  doctorReviewer?: string;
+  tags: string[];
+}
+
+export interface FacilityItem {
+  id: string;
+  slug: string;
+  name: string;
+  category: string;
+  description: string;
+  longDescription: string;
+  image: string;
+  highlights: string[];
+  hours: string;
+  location: string;
+  capacity?: string;
+  features: string[];
+}
+
+export interface PatientInfoHubItem {
+  id: string;
+  title: string;
+  slug: string;
+  badge?: string;
+  description: string;
+  iconName: string;
+  points: string[];
+  linkUrl: string;
+}
+
+export interface FaqItem {
+  id: string;
+  question: string;
+  answer: string;
+  category: "Pendaftaran" | "BPJS & Asuransi" | "Rawat Inap" | "IGD" | "Dokter & Jadwal";
+}
+
+export interface IslamicValueItem {
+  id: string;
+  title: string;
+  arabic: string;
+  subtitle: string;
+  description: string;
+  points: string[];
+}
+
+export interface StatisticItem {
+  id: string;
+  number: string;
+  label: string;
+  description: string;
+  iconName: string;
 }
 
 export const HERO_SLIDES = [
@@ -758,113 +819,671 @@ export const CENTERS_OF_EXCELLENCE: CenterOfExcellenceItem[] = [
 
 export const SERVICES_DATA: ServiceItem[] = [
   {
-    id: "rawat-jalan",
-    name: "Rawat Jalan",
+    id: "srv-1",
+    slug: "poliklinik",
+    name: "Poliklinik Spesialis",
+    category: "Layanan Rawat Jalan",
     icon: "/images/service-rawat-jalan.png",
-    description: "Poliklinik dokter spesialis dan subspesialis lengkap dengan ruang tunggu nyaman.",
+    badge: "25+ Spesialis",
+    description: "Layanan konsultasi medis dokter spesialis dan subspesialis dengan antrean online terpadu.",
     longDescription:
-      "Layanan Rawat Jalan RSI Muhammad Ali menyediakan lebih dari 25 poliklinik spesialis dengan sistem antrean online yang efisien. Pasien didampingi oleh perawat ramah dan dokter ahli terpercaya.",
-    features: ["Pendaftaran Online Tanpa Antre", "25+ Poliklinik Multi-Spesialis", "Konsultasi Dokter Ahli Berpengalaman", "Apotek & Kasir Terintegrasi"]
+      "Poliklinik Spesialis RSI Muhammad Ali menghadirkan layanan konsultasi komprehensif bersama dokter spesialis dan konsultan senior. Dilengkapi ruang periksa modern berstandar higienis, sistem rekam medis elektronik (RME), dan integrasi langsung ke instalasi farmasi serta laboratorium untuk kenyamanan maksimal pasien.",
+    features: [
+      "Pendaftaran online via Web & WhatsApp",
+      "Sistem antrean real-time terpadu",
+      "Konsultasi dokter spesialis & subspesialis",
+      "Ruang tunggu nyaman ber-AC ramah anak",
+    ],
+    procedures: [
+      "Pemeriksaan Fisik & Diagnostik Awal",
+      "Skrining Penyakit Kronis & Degeneratif",
+      "Konsultasi Rencana Terapi & Tindakan",
+      "Penerbitan Surat Rujukan & Keterangan Sehat",
+    ],
+    hours: "Senin - Sabtu: 08:00 - 21:00 WIB",
+    location: "Gedung Utama, Lantai 1 & 2",
+    doctorCount: 48,
   },
   {
-    id: "rawat-inap",
-    name: "Rawat Inap",
-    icon: "/images/service-rawat-inap.png",
-    description: "Kamar perawatan VVIP, VIP, dan Kelas 1-3 berstandar higienis tinggi.",
-    longDescription:
-      "Kenyamanan dan ketenangan proses pemulihan pasien adalah prioritas kami. Ruang rawat inap RSI Muhammad Ali didesain dengan fasilitas lengkap, menu nutrisi halal dan terpadu dari ahli gizi klinis, serta pantauan medis 24 jam.",
-    features: ["Pilihan Kamar VVIP, VIP, Kelas 1, 2, 3", "Monitoring Perawat & Tim Medis 24/7", "Menu Nutrisi Pasien Terpadu Halal", "Fasilitas Pendamping Pasien Nyaman"]
-  },
-  {
-    id: "medical-check-up",
-    name: "Medical Check Up",
-    icon: "/images/service-mcu.png",
-    description: "Paket deteksi dini kesehatan untuk individu, pra-nikah, maupun korporat.",
-    longDescription:
-      "Layanan MCU terpadu dalam satu lantai khusus (One-Stop Service) untuk menjamin privasi dan kelancaran proses pemeriksaan kesehatan rutin Anda secara menyeluruh.",
-    features: ["Ruang Khusus MCU Terpadu", "Hasil Pemeriksaan Cepat & Akurat", "Paket Silver, Gold, Platinum, Eksekutif", "Layanan On-Site untuk Perusahaan"]
-  },
-  {
-    id: "hemodialisa",
-    name: "Hemodialisa",
-    icon: "/images/service-hemodialisa.png",
-    description: "Unit cuci darah modern dengan mesin canggih dan filter higienis bersertifikasi.",
-    longDescription:
-      "Unit Hemodialisa RSI Muhammad Ali diawasi langsung oleh Dokter Spesialis Penyakit Dalam Konsultan Ginjal & Hipertensi (Sp.PD-KGH) serta perawat hemodialisa bersertifikat resmi.",
-    features: ["Mesin Dialisis Generasi Terbaru", "Sistem Water Treatment Standar Internasional", "Single-Use Dialyzer Tersedia", "Ruang Tindakan Ber-AC & Hiburan TV"]
-  },
-  {
-    id: "laboratorium",
-    name: "Laboratorium 24 Jam",
-    icon: "/images/service-laboratorium.png",
-    description: "Uji patologi klinik, mikrobiologi, dan hematologi otomatis dengan akurasi tinggi.",
-    longDescription:
-      "Laboratorium RSI Muhammad Ali beroperasi 24 jam nonstop untuk melayani kebutuhan tes darah, urine, kimia klinik, imunoserologi, hingga penanda tumor secara presisi.",
-    features: ["Buka 24 Jam Nonstop", "Peralatan Automatisasi Berkalibrasi", "Hasil Lab Online via Portal Pasien", "Layanan Home Blood Sampling"]
-  },
-  {
-    id: "kamar-operasi",
-    name: "Kamar Operasi",
-    icon: "/images/service-operasi.png",
-    description: "Modular Operating Theatre dengan sistem filtrasi HEPA filter steril maksimal.",
-    longDescription:
-      "Kamar Operasi RSI Muhammad Ali dilengkapi sistem tata udara Laminar Air Flow dan tekanan positif untuk meminimalisir risiko infeksi luka operasi (ILO) pada setiap tindakan bedah mayor maupun minor.",
-    features: ["Sistem Tata Udara HEPA Filter", "Peralatan Laparoskopi & Endoskopi Canggih", "Tim Anestesi & Bedah Siaga 24 Jam", "Ruang Pulih Sadar (PACU) Terpantau"]
-  },
-  {
-    id: "fisioterapi",
-    name: "Fisioterapi",
-    icon: "/images/service-fisioterapi.png",
-    description: "Rehabilitasi medik pasca operasi, stroke, cedera sendi, dan nyeri otot kronis.",
-    longDescription:
-      "Didukung fisioterapis berlisensi dan alat terapi modalitas (ultrasound therapy, TENS, traksi komputer, infra-red, gym rehabilitasi) untuk memulihkan fungsi gerak tubuh Anda secara optimal.",
-    features: ["Fisioterapi Neurologi & Stroke", "Fisioterapi Orthopedi & Cedera Sendi", "Fisioterapi Geriatri / Lansia", "Program Latihan Home Care Fisioterapi"]
-  },
-  {
-    id: "radiologi",
-    name: "Radiologi & Imaging",
-    icon: "/images/service-radiologi.png",
-    description: "MRI 1.5 Tesla, CT-Scan 128 Slice, USG 4D, dan Rontgen Digital resolusi tinggi.",
-    longDescription:
-      "Pusat pencitraan radiologi canggih membantu dokter menegakkan diagnosis secara tepat dan cepat, dibaca langsung oleh Dokter Spesialis Radiologi terpercaya.",
-    features: ["MRI 1.5 Tesla Tanpa Radiasi", "CT-Scan Multislice Kontras & Non-Kontras", "Digital Radiography (X-Ray)", "USG Doppler & USG Kandungan 4D"]
-  },
-  {
-    id: "farmasi",
-    name: "Farmasi 24 Jam",
-    icon: "/images/service-farmasi.png",
-    description: "Apotek rumah sakit dengan ketersediaan obat lengkap dan layanan antar resep.",
-    longDescription:
-      "Instalasi Farmasi RSI Muhammad Ali menjamin keaslian obat, penyimpanan berstandar suhu ketat, serta konseling obat oleh Apoteker profesional untuk keselamatan pengobatan pasien.",
-    features: ["Buka 24 Jam untuk Pasien UGD & Umum", "Sistem Antrean Resep Digital", "Layanan Konseling Edukasi Obat", "Jasa Antar Obat ke Rumah Pasien"]
-  },
-  {
-    id: "sports-medicine",
-    name: "Sports Medicine",
-    icon: "/images/service-sports.png",
-    description: "Penanganan cedera olahraga, kebugaran atlet, dan program return-to-sport.",
-    longDescription:
-      "Klinik Kesehatan Olahraga memadukan keahlian dokter spesialis kedokteran olahraga, orthopedi konsultan sports, dan fisioterapis atlet untuk mempercepat proses kembali aktif berolahraga.",
-    features: ["Asesmen Kebugaran Fisik", "Penanganan Cedera ACL & Meniskus", "Program Return to Sport Terarah", "Konsultasi Nutrisi & Pola Latihan"]
-  },
-  {
-    id: "ugd",
-    name: "UGD 24 Jam",
+    id: "srv-2",
+    slug: "igd-24-jam",
+    name: "IGD 24 Jam",
+    category: "Layanan Gawat Darurat",
     icon: "/images/service-ugd.png",
-    description: "Unit Gawat Darurat siap siaga 24 jam dengan ambulans darurat respon cepat.",
+    badge: "Siaga 24/7",
+    description: "Unit Gawat Darurat siap siaga 24 jam dengan tim dokter bersertifikasi dan armada ambulans respons cepat.",
     longDescription:
-      "UGD RSI Muhammad Ali dilengkapi fasilitas triage, ruang resusitasi darurat, ruang tindakan steril, serta tim dokter jaga bersertifikat ACLS/ATLS yang tanggap mengatasi kondisi darurat medis.",
-    features: ["Hotline Darurat Siaga (021) 573 2241", "Layanan Ambulans Jemput Pasien", "Ruang Resusitasi Kritis Lengkap", "Penanganan Cepat Tanpa Menunggu Admin"]
+      "Instalasi Gawat Darurat (IGD) RSI Muhammad Ali melayani pasien darurat medis, trauma kecelakaan, dan kondisi kritis selama 24 jam penuh. Dilengkapi sistem triase modern, ruang resusitasi berstandar ICU, kamar bedah minor, serta akses langsung ke laboratorium darah dan CT-scan.",
+    features: [
+      "Hotline Darurat Siaga (021) 573 2241",
+      "Dokter jaga bersertifikat ACLS, ATLS, dan PALS",
+      "Armada ambulans mobile ICU siaga jemput",
+      "Penanganan darurat langsung tanpa penundaan administrasi",
+    ],
+    procedures: [
+      "Resusitasi Jantung Paru (RJP) & Bantuan Hidup Dasar/Lanjut",
+      "Penanganan Trauma Kepala, Fraktur, & Luka Akut",
+      "Tindakan Bedah Minor Cito & Penjahitan Luka",
+      "Stabilisasi Pasien Serangan Jantung & Stroke Akut",
+    ],
+    hours: "24 Jam Nonstop Setiap Hari",
+    location: "Gedung Utama, Lantai Dasar (Akses Langsung Ambulans)",
+    doctorCount: 16,
   },
   {
-    id: "jbhc",
-    name: "JBHC Akupuntur & Herbal",
-    icon: "/images/service-jbhc.png",
-    description: "Layanan akupuntur medis dan terapi holistik komplementer berstandar klinis.",
+    id: "srv-3",
+    slug: "rawat-jalan",
+    name: "Rawat Jalan",
+    category: "Layanan Medis",
+    icon: "/images/service-rawat-jalan.png",
+    badge: "Layanan Terpadu",
+    description: "Layanan pemeriksaan, konsultasi, dan terapi medis tanpa memerlukan rawat inap semalam.",
     longDescription:
-      "Jakarta Bio-Health Clinic (JBHC) RSI Muhammad Ali menggabungkan akupuntur medik barat dan terapi holistik untuk membantu pemulihan nyeri, relaksasi saraf, insomnia, dan daya tahan tubuh.",
-    features: ["Akupuntur Medik oleh Dokter Ahli", "Terapi Nyeri Kronis & Migrain", "Pendamping Pemulihan Pasca Stroke", "Konsultasi Kesehatan Holistik"]
-  }
+      "Layanan Rawat Jalan RSI Muhammad Ali dirancang untuk memberikan perawatan komprehensif bagi pasien yang membutuhkan pemeriksaan berkala, fisioterapi, luka diabetes, hemodialisa, maupun tindakan medis non-invasif dengan alur pelayanan yang cepat dan terintegrasi.",
+    features: [
+      "Klinik Asy-Syifa dengan pendekatan holistik",
+      "Layanan Perawatan Luka Modern (Modern Wound Care)",
+      "Apotek Rawat Jalan dengan konseling apoteker",
+      "Koneksi terpadu BPJS Kesehatan & Asuransi Swasta",
+    ],
+    procedures: [
+      "Perawatan Luka Kronis & Ulkus Diabetikum",
+      "Pemeriksaan Spirometri & Audiometri",
+      "Pemberian Terapi Inhalasi / Nebulisasi",
+      "Ganti Verban & Angkat Jahitan Pasca Operasi",
+    ],
+    hours: "Senin - Sabtu: 07:30 - 20:00 WIB",
+    location: "Gedung A, Lantai 1",
+    doctorCount: 35,
+  },
+  {
+    id: "srv-4",
+    slug: "rawat-inap",
+    name: "Rawat Inap",
+    category: "Perawatan Pasien",
+    icon: "/images/service-rawat-inap.png",
+    badge: "Kenyamanan Islami",
+    description: "Kamar perawatan President Suite, VVIP, VIP, dan Kelas 1-3 yang asri, tenang, dan berstandar higienis tinggi.",
+    longDescription:
+      "Kenyamanan, ketenangan, dan privasi proses penyembuhan pasien adalah komitmen utama kami. Ruang rawat inap RSI Muhammad Ali memadukan fasilitas modern setara hotel berbintang dengan pendampingan rohani Islam (bimbingan doa dan tayamum untuk pasien), pantauan perawat 24 jam, serta gizi halal seimbang.",
+    features: [
+      "Pilihan kamar: President Suite, VVIP, VIP, Kelas 1, 2, dan 3",
+      "Monitoring perawat & visit dokter spesialis setiap hari",
+      "Menu makanan halal lezat diawasi ahli gizi klinis",
+      "Bimbingan doa dan pendampingan rohani pasien",
+    ],
+    procedures: [
+      "Perawatan Medis Intensif Non-ICU",
+      "Pemberian Obat & Cairan Infus Terjadwal",
+      "Pemantauan Tanda Vital Digital 24 Jam",
+      "Rehabilitasi Medik Bertahap di Samping Tempat Tidur",
+    ],
+    hours: "24 Jam (Jam Kunjungan: 11:00-13:00 & 17:00-19:00 WIB)",
+    location: "Gedung A & B, Lantai 3 s/d 6",
+    doctorCount: 52,
+  },
+  {
+    id: "srv-5",
+    slug: "laboratorium",
+    name: "Laboratorium 24 Jam",
+    category: "Pusat Diagnostik",
+    icon: "/images/service-laboratorium.png",
+    badge: "Akurasi Tinggi",
+    description: "Uji patologi klinik, mikrobiologi, dan hematologi otomatis dengan akurasi tinggi dan hasil online.",
+    longDescription:
+      "Instalasi Laboratorium RSI Muhammad Ali menggunakan peralatan analiser otomatis generasi mutakhir yang terkalibrasi secara ketat dan tersertifikasi ISO. Melayani pengujian darah rutin, profil lipid, fungsi organ vital, imunoserologi, penanda tumor, hingga kultur mikrobiologi dengan hasil cepat yang dapat diakses online.",
+    features: [
+      "Buka 24 jam melayani pasien UGD, Rawat Inap, & Mandiri",
+      "Hasil tes terintegrasi ke Portal Pasien Online",
+      "Pemeriksaan hematologi, kimia klinik, urin, imunologi",
+      "Layanan Home Blood Sampling (ambil sampel di rumah)",
+    ],
+    procedures: [
+      "Uji Darah Lengkap (CBC) Otomatis",
+      "Pemeriksaan Profil Glukosa & HbA1c",
+      "Uji Fungsi Hati (SGOT/SGPT) & Fungsi Ginjal (Ureum/Kreatinin)",
+      "Pemeriksaan Penanda Jantung (Troponin I/T) & D-Dimer Cito",
+    ],
+    hours: "24 Jam Nonstop",
+    location: "Gedung Utama, Lantai 1",
+    doctorCount: 6,
+  },
+  {
+    id: "srv-6",
+    slug: "radiologi",
+    name: "Radiologi & Pencitraan",
+    category: "Pusat Diagnostik",
+    icon: "/images/service-radiologi.png",
+    badge: "Teknologi Terkini",
+    description: "MRI 1.5 Tesla, CT-Scan 128 Slice, USG 4D Doppler, dan Digital X-Ray dengan radiasi minimal.",
+    longDescription:
+      "Pusat Pencitraan Diagnostik RSI Muhammad Ali didukung oleh modalitas imaging tercanggih untuk membantu dokter menegakkan diagnosis secara presisi. Setiap hasil foto dan scan diinterpretasikan langsung oleh Dokter Spesialis Radiologi berpengalaman.",
+    features: [
+      "MRI 1.5 Tesla tanpa radiasi dengan ruang periksa tenang",
+      "CT-Scan 128 Slice dosis radiasi ultra-rendah",
+      "Digital Radiography (X-Ray) hasil instan tajam",
+      "USG 4D Fetomaternal & Vaskular Doppler",
+    ],
+    procedures: [
+      "MRI Otak, Tulang Belakang, & Ekstremitas Sendi",
+      "CT Angiography Pembuluh Darah & Jantung",
+      "Rontgen Thorax, Abdomen, & Tulang Rangka",
+      "Mamografi Digital Skrining Dini Kanker Payudara",
+    ],
+    hours: "Senin - Sabtu: 08:00 - 21:00 WIB (UGD Cito: 24 Jam)",
+    location: "Gedung B, Lantai Dasar (Basement)",
+    doctorCount: 8,
+  },
+  {
+    id: "srv-7",
+    slug: "farmasi",
+    name: "Farmasi 24 Jam",
+    category: "Pelayanan Obat",
+    icon: "/images/service-farmasi.png",
+    badge: "Obat Asli & Halal",
+    description: "Instalasi farmasi rumah sakit berstandar Cara Distribusi Obat yang Baik (CDOB) dengan konseling apoteker.",
+    longDescription:
+      "Instalasi Farmasi RSI Muhammad Ali menyediakan obat-obatan esensial, antibiotik, sediaan steril, hingga produk herbal fitofarmaka halal yang terjamin keaslian dan suhunya. Apoteker kami siap memberikan konseling edukasi interaksi obat bagi pasien dan keluarga.",
+    features: [
+      "Layanan obat 24 jam untuk pasien UGD, Rawat Inap, & Rawat Jalan",
+      "Sistem peracikan steril & digital dispensing",
+      "Konseling penggunaan obat khusus (insulin, inhaler)",
+      "Layanan antar obat ke alamat rumah pasien",
+    ],
+    procedures: [
+      "Skrining Resep & Verifikasi Dosis Farmakologis",
+      "Peracikan Obat Puyer & Sirup Anak Higienis",
+      "Rekonsiliasi Obat Pasien Rawat Inap",
+      "Konseling Edukasi Kepatuhan Minum Obat",
+    ],
+    hours: "24 Jam Nonstop",
+    location: "Gedung Utama, Lantai 1 (Dekat Lobi)",
+    doctorCount: 12,
+  },
+  {
+    id: "srv-8",
+    slug: "medical-check-up",
+    name: "Medical Check Up (MCU)",
+    category: "Pencegahan & Skrining",
+    icon: "/images/service-mcu.png",
+    badge: "One-Stop Service",
+    description: "Paket deteksi dini komprehensif untuk individu, calon pengantin, lansia, dan skrining korporat.",
+    longDescription:
+      "Layanan MCU RSI Muhammad Ali berada dalam satu area terpadu (one-stop service) tanpa harus berpindah antar gedung. Hasil pemeriksaan dirangkum dalam buku laporan medis komprehensif disertai konsultasi gaya hidup sehat bersama Dokter Spesialis Okupasi dan Dokter Spesialis Penyakit Dalam.",
+    features: [
+      "Paket Silver, Gold, Platinum, Eksekutif, & Pranikah",
+      "Hasil pemeriksaan selesai cepat dengan resume dokter",
+      "Ruang tunggu eksklusif dilengkapi snack sehat dan teh",
+      "Layanan skrining kesehatan on-site untuk instansi & perusahaan",
+    ],
+    procedures: [
+      "Pemeriksaan Tanda Vital & Indeks Massa Tubuh",
+      "Rekam Jantung (EKG) & Treadmill Stress Test",
+      "Rontgen Thorax & USG Abdomen Lengkap",
+      "Panel Darah Lengkap, Fungsi Organ, & Penanda Kanker",
+    ],
+    hours: "Senin - Sabtu: 07:30 - 15:00 WIB",
+    location: "Gedung A, Lantai 2 (Klinik MCU Eksekutif)",
+    doctorCount: 14,
+  },
+  {
+    id: "srv-9",
+    slug: "klinik-anak",
+    name: "Klinik Anak (Pediatri)",
+    category: "Poliklinik Spesialis",
+    icon: "/images/service-rawat-jalan.png",
+    badge: "Ramah Anak",
+    description: "Perawatan kesehatan bayi dan anak, vaksinasi lengkap, pemantauan tumbuh kembang, dan penanganan alergi.",
+    longDescription:
+      "Klinik Anak RSI Muhammad Ali didesain dengan konsep ramah anak (child-friendly) agar si kecil merasa aman dan nyaman saat berkunjung. Didukung dokter spesialis anak berpengalaman, ruang bermain edukatif, ruang laktasi khusus, serta pemisahan ruang tunggu anak sehat (imunisasi) dan anak sakit.",
+    features: [
+      "Pemisahan ruang imunisasi (anak sehat) dan anak sakit",
+      "Jadwal vaksinasi lengkap sesuai rekomendasi IDAI",
+      "Konsultasi tumbuh kembang anak & pencegahan stunting",
+      "Klinik laktasi & ruang menyusui privat ber-AC",
+    ],
+    procedures: [
+      "Imunisasi Bayi, Balita, & Anak Remaja",
+      "Skrining Perkembangan Denver II & Tes Tumbuh Kembang",
+      "Penanganan Demam, Kejang, Asma, & Infeksi Tropis",
+      "Konseling Gizi Anak & MPASI oleh Dokter Spesialis",
+    ],
+    hours: "Senin - Sabtu: 08:30 - 20:00 WIB (Sunday Clinic: 09:00 - 12:00 WIB)",
+    location: "Gedung Utama, Lantai 2, Ruang 204-206",
+    doctorCount: 8,
+  },
+  {
+    id: "srv-10",
+    slug: "klinik-kandungan",
+    name: "Klinik Kebidanan & Kandungan",
+    category: "Poliklinik Spesialis",
+    icon: "/images/service-rawat-jalan.png",
+    badge: "Metode ERACS",
+    description: "Pemeriksaan kehamilan USG 4D, program hamil, penanganan ginekologi, dan persalinan metode ERACS.",
+    longDescription:
+      "Klinik Kebidanan dan Kandungan (Obgyn) RSI Muhammad Ali memberikan pendampingan tulus bagi kaum wanita dalam setiap fase kehidupan. Melayani pemeriksaan pranikah, program kesuburan, antenatal care dengan USG 4D fetomaternal, serta persalinan nyaman dengan metode pemulihan cepat ERACS (Enhanced Recovery After Cesarean Surgery).",
+    features: [
+      "USG 4D Fetomaternal resolusi tinggi",
+      "Persalinan normal & metode ERACS minim rasa sakit",
+      "Kamar bersalin bernuansa tenang dan privat (Intimate Delivery Room)",
+      "Dokter spesialis dan bidan perempuan bersertifikasi",
+    ],
+    procedures: [
+      "Skrining Kesehatan Kehamilan Trimester I, II, III",
+      "USG Skrining Kelainan Kongenital Janin",
+      "Pap Smear & Vaksinasi Kanker Serviks (HPV)",
+      "Operasi Laparoskopi Kista Ovarium & Mioma Uteri",
+    ],
+    hours: "Senin - Sabtu: 08:00 - 20:30 WIB",
+    location: "Gedung Utama, Lantai 2, Ruang 208-210",
+    doctorCount: 10,
+  },
+  {
+    id: "srv-11",
+    slug: "klinik-penyakit-dalam",
+    name: "Klinik Penyakit Dalam (Internis)",
+    category: "Poliklinik Spesialis",
+    icon: "/images/service-hemodialisa.png",
+    badge: "Konsultan Subspesialis",
+    description: "Diagnosis dan tata laksana komprehensif penyakit organ dalam dewasa, diabetes, hipertensi, dan ginjal.",
+    longDescription:
+      "Klinik Penyakit Dalam RSI Muhammad Ali diperkuat oleh para dokter spesialis penyakit dalam (Sp.PD) dan konsultan subspesialis (Ginjal-Hipertensi, Gastroentero-Hepatologi, Endokrin-Diabetes, Alergi-Imunologi). Menangani penyakit akut maupun kronis secara holistik.",
+    features: [
+      "Tim konsultan ginjal, lambung, metabolik, & imunologi",
+      "Koneksi langsung ke unit hemodialisa dan endoskopi",
+      "Edukasi pengelolaan diabetes mandiri & pola hidup sehat",
+      "Pemeriksaan cepat profil glukosa darah dan elektrolit",
+    ],
+    procedures: [
+      "Pemeriksaan Asam Urat, Kolesterol, & Tekanan Darah Terpadu",
+      "Manajemen Diabetes Melitus & Sindroma Metabolik",
+      "Evaluasi & Terapi Gangguan Fungsi Hati dan Saluran Cerna",
+      "Penanganan Gangguan Ginjal Akut & Kronis",
+    ],
+    hours: "Senin - Sabtu: 08:00 - 20:00 WIB",
+    location: "Gedung A, Lantai 2, Ruang 212-215",
+    doctorCount: 12,
+  },
+  {
+    id: "srv-12",
+    slug: "klinik-bedah",
+    name: "Klinik Bedah Umum & Subspesialis",
+    category: "Poliklinik Spesialis",
+    icon: "/images/service-operasi.png",
+    badge: "Minimal Invasif",
+    description: "Konsultasi pra dan pasca bedah, bedah laparoskopi, bedah digestif, bedah onkologi, dan bedah plastik.",
+    longDescription:
+      "Klinik Bedah RSI Muhammad Ali menangani tindakan operasi terencana maupun darurat dengan teknik modern minimal invasif (laparoskopi). Menjamin luka sayatan kecil, rasa sakit pasca operasi minimal, dan masa pemulihan pasien yang jauh lebih singkat.",
+    features: [
+      "Kamar Operasi Modular HEPA Filter steril berstandar internasional",
+      "Laparoskopi & Endoskopi bedah generasi terbaru",
+      "Tim dokter bedah umum, bedah tulang, bedah saraf, dan urologi",
+      "Perawatan luka bedah modern (modern dressing)",
+    ],
+    procedures: [
+      "Operasi Usus Buntu & Batu Empedu Laparoskopi",
+      "Bedah Hernia & Wasir (Hemoroid) Tanpa Sayatan Lebar",
+      "Pengangkatan Tumor Jinak Kulit & Jaringan Lunak (Eksisi)",
+      "Konsultasi Bedah Digestif & Onkologi Terpadu",
+    ],
+    hours: "Senin - Sabtu: 09:00 - 20:00 WIB",
+    location: "Gedung A, Lantai 2, Ruang 216-218",
+    doctorCount: 15,
+  },
+];
+
+export const FACILITIES_DATA: FacilityItem[] = [
+  {
+    id: "fac-1",
+    slug: "igd-24-jam",
+    name: "Instalasi Gawat Darurat (IGD) 24 Jam",
+    category: "Layanan Kritis",
+    description: "Unit penanganan darurat berkecepatan tinggi dengan dokter siaga dan fasilitas resusitasi lengkap.",
+    longDescription:
+      "IGD RSI Muhammad Ali beroperasi 24 jam sehari dengan sistem triase modern yang memprioritaskan pasien berdasarkan derajat kegawatan. Dilengkapi ruang resusitasi kritis, monitor tanda vital otomatis, defibrilator, serta akses tercepat menuju kamar operasi dan ruang radiologi.",
+    image: "/images/service-ugd.png",
+    highlights: ["Siaga 24 Jam Nonstop", "Akses Langsung Jalur Ambulans", "Ruang Resusitasi Kritis Berstandar ICU", "Dokter Bersertifikasi ATLS/ACLS"],
+    hours: "24 Jam Nonstop",
+    location: "Gedung Utama, Lantai Dasar",
+    capacity: "18 Tempat Tidur Triase & Resusitasi",
+    features: ["Ruang Triase Khusus", "Ruang Tindakan Bedah Minor", "Ruang Dekontaminasi & Isolasi", "Peralatan Oksigen Terpusat"],
+  },
+  {
+    id: "fac-2",
+    slug: "ruang-rawat-inap",
+    name: "Ruang Rawat Inap (Suite, VIP & Reguler)",
+    category: "Akomodasi Pasien",
+    description: "Kamar rawat inap dengan pencahayaan alami, suasana tenang, pendingin udara, dan higienitas tinggi.",
+    longDescription:
+      "Kamar rawat inap RSI Muhammad Ali dirancang untuk mendukung pemulihan lahir dan batin pasien. Menyediakan berbagai kelas mulai dari President Suite, VVIP, VIP, hingga Kelas 1, 2, dan 3 yang dilengkapi ranjang medis elektrik, sofa pendamping, smart TV, kamar mandi air hangat, dan sistem pemanggilan perawat digital.",
+    image: "/images/service-rawat-inap.png",
+    highlights: ["Pilihan Kamar Lengkap (Suite s/d Kelas 3)", "Ranjang Medis Elektrik Multi-Posisi", "Pendampingan Rohani & Doa", "Menu Makanan Pasien Halal Sehat"],
+    hours: "24 Jam (Jam Kunjungan: 11:00-13:00 & 17:00-19:00 WIB)",
+    location: "Gedung A & B, Lantai 3, 4, 5, dan 6",
+    capacity: "180+ Tempat Tidur Rawat Inap",
+    features: ["Nurse Call Button di Setiap Ranjang", "Kamar Mandi Privat Air Hangat", "Free Wi-Fi & Smart TV", "Air Purifier HEPA Filter"],
+  },
+  {
+    id: "fac-3",
+    slug: "ruang-operasi",
+    name: "Ruang Operasi Modular (MOT)",
+    category: "Tindakan Medis",
+    description: "Modular Operating Theatre dengan sistem tata udara Laminar Air Flow dan filtrasi HEPA steril maksimal.",
+    longDescription:
+      "Instalasi Bedah Sentral RSI Muhammad Ali memiliki 4 kamar operasi modern berteknologi Modular Operating Theatre (MOT). Dinding anti-bakteri, sistem tata udara tekanan positif, serta peralatan laparoskopi dan mikroskop bedah memastikan tingkat kesterilan tertinggi bagi tindakan operasi bedah saraf, orthopedi, mata, kebidanan, maupun bedah umum.",
+    image: "/images/service-operasi.png",
+    highlights: ["Sistem Tata Udara HEPA Filter Laminar", "Teknologi Laparoskopi & BESS Terkini", "Kamera Bedah Ultra HD Terhubung Monitor", "Ruang Pulih Sadar (PACU) 6 Bed"],
+    hours: "24 Jam (Operasi Elektif: 08:00 - 18:00 WIB, Cito Darurat: 24 Jam)",
+    location: "Gedung B, Lantai 2",
+    capacity: "4 Kamar Operasi Modular Steril",
+    features: ["Laminar Air Flow Positif", "Lampu Operasi LED Dual-Arm", "Mesin Anestesi Digital Terintegrasi", "Sistem Pintu Hermetik Otomatis"],
+  },
+  {
+    id: "fac-4",
+    slug: "laboratorium-patologi",
+    name: "Laboratorium Patologi & Analisis Darah",
+    category: "Pusat Diagnostik",
+    description: "Pusat pemeriksaan darah, urin, kimia klinik, dan imunoserologi otomatis dengan akurasi terkalibrasi.",
+    longDescription:
+      "Laboratorium kami dilengkapi instrumen otomasi canggih yang terhubung ke Laboratory Information System (LIS). Meminimalisir kesalahan human error, mempercepat waktu tunggu hasil (Turn-Around Time), serta terhubung langsung dengan rekam medis dokter.",
+    image: "/images/service-laboratorium.png",
+    highlights: ["Buka 24 Jam Tanpa Libur", "Hasil Uji Kritis Cito < 60 Menit", "Sertifikasi Mutu Nasional & Internasional", "Akses Hasil Online via Portal Pasien"],
+    hours: "24 Jam Nonstop",
+    location: "Gedung Utama, Lantai 1",
+    capacity: "Kapasitas 1.200 Tes per Hari",
+    features: ["Automated Hematology Analyzer", "Clinical Chemistry Analyzer Otomatis", "Unit Bank Darah & Hemovigilance", "Ruang Sampling Darah Nyaman"],
+  },
+  {
+    id: "fac-5",
+    slug: "radiologi-mri-ctscan",
+    name: "Pusat Radiologi, MRI & CT-Scan",
+    category: "Pusat Diagnostik",
+    description: "Peralatan pencitraan canggih: MRI 1.5 Tesla, CT-Scan 128 Slice, USG 4D, dan Panoramic X-Ray.",
+    longDescription:
+      "Fasilitas radiologi RSI Muhammad Ali dirancang luas dengan peredam suara dan visual menenangkan untuk mengurangi kecemasan pasien (terutama pasien claustrophobia). Menyajikan visualisasi detail pembuluh darah, jaringan lunak otak, persendian, serta organ dalam tubuh.",
+    image: "/images/service-radiologi.png",
+    highlights: ["MRI 1.5 Tesla Resolusi Tinggi", "CT-Scan 128 Slice Dosis Radiasi Rendah", "USG 4D Fetomaternal & Vaskular", "Dibaca Spesialis Radiologi Senior"],
+    hours: "Senin - Sabtu: 08:00 - 21:00 WIB (Darurat IGD: 24 Jam)",
+    location: "Gedung B, Lantai Dasar",
+    capacity: "Melayani 80+ Pemeriksaan Imaging / Hari",
+    features: ["Bilik Ganti Baju Privat", "Shielding Timbal Anti-Radiasi Standar BAPETEN", "Penyimpanan Gambar Medis PACS Digital", "Ruang Diskusi Konsultasi Radiologi"],
+  },
+  {
+    id: "fac-6",
+    slug: "farmasi-24-jam",
+    name: "Instalasi Farmasi 24 Jam",
+    category: "Pelayanan Obat",
+    description: "Apotek rumah sakit lengkap dengan sistem resep elektronik (e-prescribing) dan ruangan konseling obat.",
+    longDescription:
+      "Instalasi Farmasi RSI Muhammad Ali menjamin ketersediaan obat generik, paten, dan sediaan khusus yang terdaftar di BPOM dan bersertifikasi halal. Dilengkapi ruangan konseling khusus apoteker untuk menjelaskan aturan minum, cara pemakaian alat kesehatan khusus, dan potensi efek samping obat.",
+    image: "/images/service-farmasi.png",
+    highlights: ["Buka 24 Jam Nonstop", "Penyimpanan Berstandar Suhu Ketat (Cold Chain)", "Konseling Apoteker Bebas Biaya", "Sistem e-Prescribing Bebas Antre Panjang"],
+    hours: "24 Jam Nonstop",
+    location: "Gedung Utama, Lantai 1",
+    capacity: "5 Loket Pelayanan Resep Cepat",
+    features: ["Ruang Peracikan Steril Puyer", "Chiller Penyimpanan Insulin & Vaksin", "Layar Panggilan Antrean Digital", "Ruang Konseling Apoteker Privat"],
+  },
+  {
+    id: "fac-7",
+    slug: "ambulans-gawat-darurat",
+    name: "Armada Ambulans & ICU Mobile",
+    category: "Transportasi Medis",
+    description: "Armada ambulans tanggap darurat dilengkapi ventilator portabel, monitor jantung, dan tabung oksigen.",
+    longDescription:
+      "Armada ambulans RSI Muhammad Ali selalu siaga menjemput pasien gawat darurat dari rumah, tempat kerja, atau lokasi kecelakaan, serta melayani rujukan antar rumah sakit. Dilengkapi peralatan penunjang hidup setara ruang rawat intensif (ICU Mobile) dan didampingi perawat bersertifikasi kegawatdaruratan.",
+    image: "/images/service-ugd.png",
+    highlights: ["Call Center Siaga 24 Jam (021) 573 2241", "Ventilator Transport & Defibrilator", "Tim Paramedis Emergency Berpengalaman", "GPS Tracking Navigasi Cepat"],
+    hours: "24 Jam Siaga Panggilan",
+    location: "Area Parkir Khusus Ambulans Gedung Utama",
+    capacity: "4 Unit Armada Ambulans (2 ICU Mobile, 2 Standar Transport)",
+    features: ["Stretcher Multi-Level Otomatis", "Suction Unit Portabel", "Monitor EKG & Pulse Oximeter", "Kotak Obat Emergency Lengkap"],
+  },
+  {
+    id: "fac-8",
+    slug: "musholla-asy-syifa",
+    name: "Musholla Asy-Syifa & Bimbingan Rohani",
+    category: "Fasilitas Ibadah & Rohani",
+    description: "Musholla yang luas, sejuk, ber-AC, dengan tempat wudhu bersih dan fasilitas bimbingan doa kesembuhan.",
+    longDescription:
+      "Sesuai nilai luhur Rumah Sakit Islam, RSI Muhammad Ali menyediakan Musholla Asy-Syifa yang nyaman untuk salat berjamaah bagi pasien, keluarga, dan pengunjung. Tersedia pula tim bimbingan rohani Islam yang siap memberikan motivasi spiritual, membimbing doa kesembuhan, tayamum, dan salat bagi pasien yang sedang dirawat inap.",
+    image: "/images/service-rawat-jalan.png",
+    highlights: ["Ruang Ibadah Ber-AC Luas & Wangi", "Tempat Wudhu Terpisah Pria & Wanita", "Tersedia Mukena, Sarung, & Al-Quran Bersih", "Layanan Bimbingan Rohani Pasien"],
+    hours: "Terbuka 24 Jam Setiap Hari",
+    location: "Gedung A, Lantai 1 (Akses Dekat Taman Dalam)",
+    capacity: "Kapasitas 120 Jamaah",
+    features: ["Koleksi Buku Doa Kesembuhan", "Arah Kiblat Terverifikasi Akurat", "Tempat Penitipan Sepatu Aman", "Jalur Akses Ramah Kursi Roda"],
+  },
+];
+
+export const ISLAMIC_VALUES_DATA: IslamicValueItem[] = [
+  {
+    id: "val-1",
+    title: "Amanah",
+    arabic: "الأمانة",
+    subtitle: "Integritas & Tanggung Jawab Moral",
+    description: "Menjaga kepercayaan pasien, keluarga, dan masyarakat dengan menjunjung tinggi kejujuran medis, kerahasiaan data pasien, serta tanggung jawab profesional di hadapan Allah SWT.",
+    points: [
+      "Transparansi diagnosis dan rencana pengobatan",
+      "Kerahasiaan rekam medis pasien terjaga ketat",
+      "Tidak membebankan tindakan medis yang tidak perlu",
+    ],
+  },
+  {
+    id: "val-2",
+    title: "Profesional",
+    arabic: "الإتقان",
+    subtitle: "Keahlian Medis Berstandar Unggul",
+    description: "Menerapkan ilmu kedokteran berbasis bukti (Evidence-Based Medicine) dengan standar mutu klinis tertinggi, continuous learning, dan akreditasi KARS Paripurna.",
+    points: [
+      "Dokter spesialis dan subspesialis tersertifikasi",
+      "Prosedur keselamatan pasien (Patient Safety First)",
+      "Teknologi medis modern dan terkalibrasi berkala",
+    ],
+  },
+  {
+    id: "val-3",
+    title: "Ramah",
+    arabic: "البشاشة",
+    subtitle: "Kehangatan Senyum & Kesantunan",
+    description: "Menebarkan senyum, salam, sapa, sopan, dan santun (5S) kepada setiap pasien dan keluarga untuk menghadirkan ketenangan serta meredakan rasa cemas dalam masa sakit.",
+    points: [
+      "Pelayanan penuh senyum dan tutur kata santun",
+      "Mendengarkan keluhan pasien dengan empati dan sabar",
+      "Suasana rumah sakit yang menyejukkan hati",
+    ],
+  },
+  {
+    id: "val-4",
+    title: "Peduli",
+    arabic: "الرحمة",
+    subtitle: "Empati & Kasih Sayang Bagi Sesama",
+    description: "Memperlakukan setiap pasien seperti keluarga sendiri dengan kepedulian tulus tanpa membeda-bedakan status sosial, suku, maupun latar belakang.",
+    points: [
+      "Akses kesehatan inklusif bagi seluruh lapisan masyarakat",
+      "Pelayanan tanggap darurat tanpa diskriminasi",
+      "Dukungan konseling psikologis dan pendampingan keluarga",
+    ],
+  },
+  {
+    id: "val-5",
+    title: "Islami",
+    arabic: "الإسلامي",
+    subtitle: "Bimbingan Doa & Standar Syariah",
+    description: "Mengintegrasikan ikhtiar medis ilmiah dengan nilai-nilai tauhid dan doa kesembuhan, sertifikasi syariah DSN-MUI, obat dan makanan halal, serta menjaga aurat dan adab pergaulan islami.",
+    points: [
+      "Bimbingan doa kesembuhan dan tayamum bagi pasien rawat inap",
+      "Makanan dan obat-obatan terjamin kehalalannya",
+      "Menjaga privasi, aurat, dan etika interaksi tenaga medis",
+    ],
+  },
+];
+
+export const PATIENT_INFO_DATA: PatientInfoHubItem[] = [
+  {
+    id: "inf-1",
+    title: "Jadwal Praktik Dokter",
+    slug: "jadwal-dokter",
+    badge: "Terbaru",
+    description: "Cek jadwal poliklinik harian para dokter spesialis dan subspesialis kami yang selalu diperbarui.",
+    iconName: "Calendar",
+    points: ["Poli buka Senin s/d Sabtu", "Layanan Sunday Clinic akhir pekan", "Jadwal dokter real-time"],
+    linkUrl: "/dokter",
+  },
+  {
+    id: "inf-2",
+    title: "Cara Pendaftaran Pasien",
+    slug: "cara-pendaftaran",
+    badge: "Mudah & Cepat",
+    description: "Panduan lengkap alur pendaftaran pasien baru dan pasien lama via website, WhatsApp, atau langsung di lobi.",
+    iconName: "UserCheck",
+    points: ["Pendaftaran online bebas antre", "Bisa menggunakan NIK KTP / No. RM", "Pilihan pembayaran umum & asuransi"],
+    linkUrl: "/buat-janji",
+  },
+  {
+    id: "inf-3",
+    title: "Informasi Rawat Inap & Besuk",
+    slug: "informasi-rawat-inap",
+    description: "Ketentuan jam kunjungan pasien rawat inap, fasilitas kamar, tata tertib penunggu, dan menu gizi halal.",
+    iconName: "BedDouble",
+    points: ["Jam besuk siang 11:00-13:00", "Jam besuk sore 17:00-19:00", "Maksimal 2 penunggu dalam kamar"],
+    linkUrl: "/layanan/rawat-inap",
+  },
+  {
+    id: "inf-4",
+    title: "Panduan Gawat Darurat (IGD)",
+    slug: "panduan-igd",
+    badge: "Siaga 24 Jam",
+    description: "Langkah-langkah penanganan pasien darurat, kriteria triase merah/kuning/hijau, dan pemanggilan ambulans.",
+    iconName: "AlertCircle",
+    points: ["Hotline darurat: (021) 573 2241", "Penanganan langsung tanpa antre", "Ambulans ICU Mobile siaga"],
+    linkUrl: "/layanan/igd-24-jam",
+  },
+  {
+    id: "inf-5",
+    title: "Informasi BPJS Kesehatan",
+    slug: "informasi-bpjs",
+    description: "Syarat dan alur rujukan berjenjang BPJS Kesehatan dari Faskes Tingkat 1 (Puskesmas/Klinik) ke RSI Muhammad Ali.",
+    iconName: "ShieldCheck",
+    points: ["Surat rujukan online e-Klaim", "Kartu JKN aktif / Aplikasi Mobile JKN", "Poliklinik dan rawat inap terintegrasi BPJS"],
+    linkUrl: "/informasi-pasien",
+  },
+  {
+    id: "inf-6",
+    title: "Mitra Asuransi Swasta & Korporat",
+    slug: "mitra-asuransi",
+    description: "Daftar 16+ asuransi swasta nasional dan internasional dengan fasilitas cashless tanpa biaya tambahan.",
+    iconName: "CreditCard",
+    points: ["Sistem klaim cashless instan", "Meja admisi asuransi prioritas", "Didukung AdMedika, Inhealth, Prudential dll"],
+    linkUrl: "/informasi-pasien",
+  },
+  {
+    id: "inf-7",
+    title: "Tarif Layanan & Paket Transparan",
+    slug: "tarif-layanan",
+    description: "Estimasi biaya rawat inap, paket persalinan ERACS, operasi katarak, dan paket Medical Check Up (MCU).",
+    iconName: "FileText",
+    points: ["Rincian biaya transparan", "Paket bersalin & bedah terjangkau", "Tidak ada biaya tersembunyi"],
+    linkUrl: "/informasi-pasien",
+  },
+  {
+    id: "inf-8",
+    title: "Hak & Kewajiban Pasien",
+    slug: "hak-kewajiban-pasien",
+    description: "Informasi penting mengenai hak perlindungan hukum, persetujuan tindakan medis (Informed Consent), dan tata tertib.",
+    iconName: "Scale",
+    points: ["Hak atas informasi diagnosis lengkap", "Hak atas privasi dan kerahasiaan", "Kewajiban mematuhi arahan medis"],
+    linkUrl: "/informasi-pasien",
+  },
+];
+
+export const FAQS_DATA: FaqItem[] = [
+  {
+    id: "faq-1",
+    question: "Bagaimana cara membuat janji temu dengan dokter spesialis secara online?",
+    answer:
+      "Anda dapat memilih menu 'Buat Janji' di website ini, memilih poliklinik dan dokter yang dituju, menentukan tanggal dan jam konsultasi, lalu mengisi data diri. Tiket janji temu digital akan otomatis terbit dan konfirmasi akan dikirimkan melalui WhatsApp.",
+    category: "Pendaftaran",
+  },
+  {
+    id: "faq-2",
+    question: "Apakah RSI Muhammad Ali melayani pasien BPJS Kesehatan?",
+    answer:
+      "Ya, RSI Muhammad Ali melayani pasien BPJS Kesehatan untuk rawat jalan maupun rawat inap dengan menyertakan surat rujukan dari Faskes Tingkat 1 (Puskesmas/Klinik) yang masih berlaku serta KTP dan kartu BPJS aktif.",
+    category: "BPJS & Asuransi",
+  },
+  {
+    id: "faq-3",
+    question: "Berapa nomor telepon darurat IGD dan pemanggilan ambulans?",
+    answer:
+      "Nomor darurat UGD 24 Jam dan pemanggilan ambulans RSI Muhammad Ali adalah (021) 573 2241. Tim kami siaga 24 jam sehari 7 hari seminggu.",
+    category: "IGD",
+  },
+  {
+    id: "faq-4",
+    question: "Kapan jadwal jam besuk untuk pasien yang dirawat inap?",
+    answer:
+      "Jam besuk rawat inap dibagi menjadi dua sesi: Sesi Siang pukul 11:00 - 13:00 WIB dan Sesi Sore pukul 17:00 - 19:00 WIB. Anak-anak di bawah usia 12 tahun diimbau tidak memasuki area ruang perawatan demi keselamatan kesehatan anak.",
+    category: "Rawat Inap",
+  },
+  {
+    id: "faq-5",
+    question: "Apakah poliklinik spesialis buka di hari Minggu (akhir pekan)?",
+    answer:
+      "Ya, kami menyediakan program Sunday Clinic khusus di hari Minggu pukul 09:00 - 13:00 WIB untuk spesialis anak, spesialis kandungan, spesialis mata, dan spesialis penyakit dalam.",
+    category: "Dokter & Jadwal",
+  },
+  {
+    id: "faq-6",
+    question: "Bagaimana cara melihat hasil pemeriksaan laboratorium atau radiologi secara online?",
+    answer:
+      "Pasien dapat mengakses menu 'Daftar / Login' di pojok kanan atas, masuk menggunakan Nomor Rekam Medis (No. RM) atau NIK KTP yang terdaftar, lalu mengunduh hasil laboratorium dan radiologi dalam format PDF resmi.",
+    category: "Pendaftaran",
+  },
+  {
+    id: "faq-7",
+    question: "Apa saja asuransi swasta yang bisa digunakan secara Cashless?",
+    answer:
+      "Kami bekerja sama dengan berbagai asuransi swasta terkemuka seperti Prudential, Allianz, AIA, Manulife, AXA Mandiri, Mandiri Inhealth, Sinarmas MSIG, BNI Life, Sequis Life, AdMedika, dan Telkomedika.",
+    category: "BPJS & Asuransi",
+  },
+  {
+    id: "faq-8",
+    question: "Apakah metode persalinan ERACS tersedia di RSI Muhammad Ali?",
+    answer:
+      "Ya, kami memiliki program persalinan ERACS (Enhanced Recovery After Cesarean Surgery) yang ditangani oleh tim Dokter Spesialis Kebidanan (Sp.OG) dan Dokter Spesialis Anestesi (Sp.An) tersertifikasi untuk pemulihan ibu yang jauh lebih cepat dan nyaman.",
+    category: "Dokter & Jadwal",
+  },
+];
+
+export const STATISTICS_DATA: StatisticItem[] = [
+  {
+    id: "stat-1",
+    number: "50+",
+    label: "Dokter & Tenaga Medis",
+    description: "Dokter spesialis & subspesialis teruji dari universitas terkemuka",
+    iconName: "Users",
+  },
+  {
+    id: "stat-2",
+    number: "10+",
+    label: "Layanan Unggulan",
+    description: "Centers of Excellence berteknologi modern & bersertifikasi syariah",
+    iconName: "Award",
+  },
+  {
+    id: "stat-3",
+    number: "24 Jam",
+    label: "Layanan IGD & Ambulans",
+    description: "Kesiapsiagaan penuh penanganan gawat darurat medis sepanjang waktu",
+    iconName: "Clock",
+  },
+  {
+    id: "stat-4",
+    number: "1000+",
+    label: "Pasien Dilayani",
+    description: "Masyarakat mempercayakan ikhtiar kesembuhan keluarga setiap bulan",
+    iconName: "HeartPulse",
+  },
 ];
 
 export const PROMO_DATA: PromoItem[] = [
@@ -878,7 +1497,7 @@ export const PROMO_DATA: PromoItem[] = [
       "Dapatkan paket terapi fisik komprehensif untuk nyeri leher, bahu, pinggang, atau pasca cedera bersama fisioterapis bersertifikasi.",
     validUntil: "30 April 2026",
     image: "/images/promo-fisioterapi.jpeg",
-    category: "Rehabilitasi"
+    category: "Rehabilitasi",
   },
   {
     id: "promo-2",
@@ -890,7 +1509,7 @@ export const PROMO_DATA: PromoItem[] = [
       "Pemeriksaan pencitraan MRI 1.5 Tesla dengan kualitas gambar tajam dan waktu tunggu cepat pada jam layanan khusus happy hour.",
     validUntil: "31 Mei 2026",
     image: "/images/banner-slide-2.webp",
-    category: "Pemeriksaan"
+    category: "Pemeriksaan",
   },
   {
     id: "promo-3",
@@ -902,7 +1521,7 @@ export const PROMO_DATA: PromoItem[] = [
       "Terobosan medis mutakhir untuk mengatasi radang sendi lutut (osteoarthritis) tanpa bedah operasi berat, merangsang regenerasi tulang rawan.",
     validUntil: "15 Juni 2026",
     image: "/images/promo-stem-cell.jpeg",
-    category: "Tindakan"
+    category: "Tindakan",
   },
   {
     id: "promo-4",
@@ -914,7 +1533,7 @@ export const PROMO_DATA: PromoItem[] = [
       "Pemeriksaan kesehatan menyeluruh bagi usia lanjut: tes fungsi ginjal, profil lipid darah, asam urat, gula darah, rontgen thoraks, dan EKG jantung.",
     validUntil: "30 Juni 2026",
     image: "/images/promo-lansia.jpeg",
-    category: "MCU"
+    category: "MCU",
   },
   {
     id: "promo-5",
@@ -926,7 +1545,7 @@ export const PROMO_DATA: PromoItem[] = [
       "Vaksinasi influenza kuadrivalen untuk anak dan dewasa guna melindungi sistem pernapasan dari mutasi virus flu musiman.",
     validUntil: "31 Juli 2026",
     image: "/images/banner-promo-1.webp",
-    category: "Pemeriksaan"
+    category: "Pemeriksaan",
   },
   {
     id: "promo-6",
@@ -938,86 +1557,146 @@ export const PROMO_DATA: PromoItem[] = [
       "Uji kadar Vitamin D dalam darah untuk menjaga kekuatan tulang, fungsi kekebalan tubuh, dan mencegah penyakit autoimun.",
     validUntil: "31 Mei 2026",
     image: "/images/promo-kartini.jpeg",
-    category: "Pemeriksaan"
-  }
+    category: "Pemeriksaan",
+  },
 ];
 
 export const ARTICLES_DATA: ArticleItem[] = [
   {
     id: "art-1",
+    slug: "layanan-endoskopi-bess-solusi-nyeri-saraf-terjepit",
     title: "Layanan Endoskopi BESS: Solusi Nyeri Saraf Terjepit Tanpa Operasi Besar",
     excerpt:
-      "Kondisi saraf terjepit atau Hernia Nukleus Pulposus (HNP) seringkali menjadi hambatan aktivitas. Kini hadir teknik Biportal Endoscopic Spinal Surgery (BESS) dengan sayatan minimal.",
-    category: "Bedah Saraf & Tulang Belakang",
+      "Kondisi saraf terjepit atau Hernia Nukleus Pulposus (HNP) seringkali menjadi hambatan aktivitas. Kini hadir teknik Biportal Endoscopic Spinal Surgery (BESS) dengan sayatan minimal kurang dari 1 cm.",
+    category: "Kesehatan",
     date: "10 September 2026",
     readTime: "4 menit baca",
     image: "/images/article-endoskopi.jpg",
+    author: "Tim Redaksi Medis RSI Muhammad Ali",
+    doctorReviewer: "dr. Roslan Yusni Hasan, Sp.BS",
+    tags: ["Bedah Saraf", "Tulang Belakang", "HNP", "Minimal Invasif"],
     content:
-      "Biportal Endoscopic Spinal Surgery (BESS) adalah teknik bedah endoskopi modern yang memanfaatkan dua portal sayatan kecil (kurang dari 1 cm). Melalui portal pertama dimasukkan kamera endoskopi beresolusi tinggi, dan melalui portal kedua dimasukkan instrumen bedah mikro. Pasien merasakan nyeri pasca operasi yang sangat minim, risiko kerusakan jaringan otot sangat kecil, dan pasien umumnya dapat berjalan kembali dalam 24 jam."
+      "Biportal Endoscopic Spinal Surgery (BESS) adalah teknik bedah endoskopi modern yang memanfaatkan dua portal sayatan kecil (kurang dari 1 cm). Melalui portal pertama dimasukkan kamera endoskopi beresolusi tinggi, dan melalui portal kedua dimasukkan instrumen bedah mikro. Pasien merasakan nyeri pasca operasi yang sangat minim, risiko kerusakan jaringan otot sangat kecil, dan pasien umumnya dapat berjalan kembali dalam waktu 24 jam pasca tindakan.",
   },
   {
     id: "art-2",
-    title: "Kenali 6 Kebiasaan Sehari-Hari yang Dapat Membahayakan Gigi dan Gusi",
+    slug: "tips-menjaga-kesehatan-jantung-ajaran-nabi-medis-modern",
+    title: "Tips Menjaga Kesehatan Jantung: Perpaduan Sunnah Nabi & Kedokteran Modern",
     excerpt:
-      "Banyak kebiasaan kecil seperti mengunyah es batu, menyikat gigi terlalu keras, atau menggemeretakkan gigi saat tidur yang memicu kerusakan enamel gigi secara permanen.",
-    category: "Kesehatan Gigi & Mulut",
-    date: "04 September 2026",
-    readTime: "3 menit baca",
-    image: "/images/article-gigi.png",
+      "Jantung adalah pusat kehidupan. Mengatur pola makan halal-thayyib, menghindari stres berlebih dengan dzikir, dan olahraga kardio rutin terbukti menjaga kelenturan pembuluh darah.",
+    category: "Edukasi Islami",
+    date: "06 September 2026",
+    readTime: "5 menit baca",
+    image: "/images/article-mata.png",
+    author: "dr. Hendra Wijaya, Sp.JP, FIHA",
+    doctorReviewer: "dr. Hendra Wijaya, Sp.JP, FIHA",
+    tags: ["Kesehatan Jantung", "Gaya Hidup Sehat", "Edukasi Islami", "Kardiologi"],
     content:
-      "Kesehatan gigi dan mulut memiliki hubungan erat dengan kesehatan tubuh secara menyeluruh. Menyikat gigi terlalu keras dapat mengikis enamel dan menyebabkan resesi gusi. Selain itu, kebiasaan membuka kemasan plastik dengan gigi atau sering mengonsumsi minuman berkarbonasi manis meningkatkan risiko karies dan infeksi pulpa."
+      "Rasulullah SAW mengajarkan prinsip makan secukupnya: sepertiga untuk makanan, sepertiga untuk air, dan sepertiga untuk udara. Secara medis, pola makan yang tidak berlebihan mencegah resistensi insulin dan penumpukan plak aterosklerosis di dinding arteri koroner. Dikombinasikan dengan jalan kaki rutin 30 menit sehari dan menjaga ketenangan batin, kesehatan kardiovaskular dapat terjaga secara optimal hingga usia senja.",
   },
   {
     id: "art-3",
-    title: "Kenali Tanda-Tanda Mata Sedang Bermasalah dan Wajib Diperiksakan",
+    slug: "kenali-tanda-mata-bermasalah-wajib-periksa",
+    title: "Kenali Tanda-Tanda Mata Sedang Bermasalah dan Wajib Segera Diperiksakan",
     excerpt:
       "Penglihatan kabur perlahan, melihat lingkaran halo di sekitar lampu, atau bayangan melayang (floaters) bisa menjadi indikasi awal katarak, glaukoma, maupun gangguan retina.",
-    category: "Kesehatan Mata",
+    category: "Kesehatan",
     date: "28 Agustus 2026",
     readTime: "5 menit baca",
     image: "/images/article-mata.png",
+    author: "dr. Wita Jayanti, Sp.M",
+    doctorReviewer: "dr. Wita Jayanti, Sp.M",
+    tags: ["Kesehatan Mata", "Katarak", "Glaukoma", "Pemeriksaan Rutin"],
     content:
-      "Mata adalah jendela dunia. Banyak penyakit mata yang berjalan tanpa gejala nyeri pada tahap awal, misalnya glaukoma (pencuri penglihatan diam-diam). Pemeriksaan mata rutin tahunan sangat dianjurkan terutama bagi mereka yang berusia di atas 40 tahun, penderita diabetes mellitus, atau pengguna kacamata dengan minus tinggi."
+      "Mata adalah jendela dunia. Banyak penyakit mata yang berjalan tanpa gejala nyeri pada tahap awal, misalnya glaukoma yang sering disebut sebagai pencuri penglihatan diam-diam. Pemeriksaan mata berkala setiap 6 hingga 12 bulan sangat dianjurkan, terutama bagi individu di atas 40 tahun, penderita diabetes mellitus, atau mereka yang memiliki riwayat keluarga dengan gangguan retina.",
   },
   {
     id: "art-4",
-    title: "Arthroscopy untuk Perbaiki Gangguan Sendi Lutut dan Cedera Ligamen",
+    slug: "panduan-puasa-sehat-diabetes-asam-lambung",
+    title: "Panduan Puasa Sehat bagi Penderita Diabetes & Gangguan Asam Lambung (GERD)",
     excerpt:
-      "Prosedur bedah lubang kunci untuk mendiagnosis sekaligus memperbaiki robekan meniskus, rekonstruksi ACL, serta membersihkan serpihan tulang rawan lutut.",
-    category: "Orthopedi & Bedah Sendi",
-    date: "15 Agustus 2026",
+      "Berpuasa memberikan manfaat detoksifikasi alami bagi metabolisme tubuh, asalkan disertai pengaturan menu sahur yang tepat, hidrasi cukup, dan penyesuaian dosis obat sesuai petunjuk dokter.",
+    category: "Tips Kesehatan",
+    date: "20 Agustus 2026",
     readTime: "4 menit baca",
-    image: "/images/article-lutut.png",
+    image: "/images/promo-fisioterapi.jpeg",
+    author: "dr. Ferika Widya Suryani, Sp.PD",
+    doctorReviewer: "dr. Ferika Widya Suryani, Sp.PD",
+    tags: ["Diabetes", "Asam Lambung", "Tips Puasa", "Penyakit Dalam"],
     content:
-      "Arthroscopy merupakan tindakan bedah minimal invasif di mana kamera kecil dimasukkan ke dalam rongga sendi. Prosedur ini memungkinkan dokter melihat struktur dalam sendi secara visual langsung di layar monitor dan melakukan perbaikan jaringan robek dengan akurasi millimeter tanpa perlu membuka sendi lutut lebar-lebar."
-  }
+      "Penderita diabetes yang ingin berpuasa disarankan mengonsumsi karbohidrat kompleks saat sahur (seperti beras merah atau oat) dan menghindari makanan tinggi gula sederhana saat berbuka secara mendadak. Bagi penderita GERD, hindari langsung berbaring setelah sahur dan batasi makanan yang memicu gas seperti santan kental, gorengan berlebih, dan kafein.",
+  },
+  {
+    id: "art-5",
+    slug: "rsi-muhammad-ali-raih-akreditasi-paripurna-kars",
+    title: "RSI Muhammad Ali Raih Akreditasi Paripurna KARS & Sertifikasi Syariah DSN-MUI",
+    excerpt:
+      "Pencapaian ini membuktikan dedikasi berkelanjutan rumah sakit dalam memberikan pelayanan kesehatan berstandar internasional yang selaras dengan etika medis Islami.",
+    category: "Informasi Rumah Sakit",
+    date: "14 Agustus 2026",
+    readTime: "3 menit baca",
+    image: "/images/service-operasi.png",
+    author: "Humas RSI Muhammad Ali",
+    doctorReviewer: "Direksi Rumah Sakit",
+    tags: ["Akreditasi KARS", "Sertifikasi Syariah", "Mutu Rumah Sakit", "Berita"],
+    content:
+      "Komisi Akreditasi Rumah Sakit (KARS) resmi menganugerahkan predikat Tingkat Paripurna (Bintang Lima) kepada Rumah Sakit Islam Muhammad Ali. Penilaian meliputi keselamatan pasien, pencegahan infeksi, kualifikasi tenaga medis, dan manajemen fasilitas. Bersamaan dengan itu, Dewan Syariah Nasional MUI memperbarui sertifikasi kepatuhan syariah dalam seluruh lini pelayanan dan pengelolaan obat halal.",
+  },
+  {
+    id: "art-6",
+    slug: "pentingnya-skrining-tumbuh-kembang-anak-usia-emas",
+    title: "Pentingnya Skrining Tumbuh Kembang Anak Sejak Usia Emas (0-5 Tahun)",
+    excerpt:
+      "Deteksi dini keterlambatan bicara (speech delay), gangguan motorik, dan stunting sejak dini memungkinkan intervensi medis yang jauh lebih efektif dan terarah.",
+    category: "Tips Kesehatan",
+    date: "02 Agustus 2026",
+    readTime: "4 menit baca",
+    image: "/images/service-rawat-jalan.png",
+    author: "dr. Amanda Putri, Sp.A, M.Kes",
+    doctorReviewer: "dr. Amanda Putri, Sp.A, M.Kes",
+    tags: ["Kesehatan Anak", "Tumbuh Kembang", "Stunting", "Imunisasi"],
+    content:
+      "Periode 1.000 hari pertama kehidupan (sejak masa konsepsi hingga anak berusia dua tahun) merupakan fase krusial pembentukan otak dan daya tahan tubuh anak. Orang tua dianjurkan rutin menimbang berat badan, mengukur tinggi badan, dan memeriksakan perkembangan motorik serta sosial anak di klinik tumbuh kembang secara terjadwal.",
+  },
 ];
 
 export const TESTIMONIALS_DATA = [
   {
     id: "testi-1",
-    name: "Ny. Erny Taher",
+    name: "Ny. Hj. Erny Taher",
     role: "Pasien Operasi Katarak Phacoemulsification",
-    text: "Pelayanan di RSI Muhammad Ali sungguh luar biasa. Mulai dari dokter mata, perawat, sampai petugas pendaftaran sangat ramah, sopan, dan sabar. Operasi katarak saya berjalan tanpa rasa sakit, penglihatan saya kini kembali jernih seperti muda dulu.",
+    text: "Pelayanan di RSI Muhammad Ali sungguh luar biasa. Mulai dari dokter mata, perawat, sampai petugas pendaftaran sangat ramah, sopan, dan santun. Operasi katarak saya berjalan cepat tanpa rasa sakit, dan kini penglihatan saya kembali jernih. Masya Allah!",
     image: "/images/testi-1.jpeg",
-    stars: 5
+    stars: 5,
+    verified: true,
   },
   {
     id: "testi-2",
-    name: "Tn. Sharul Mubarak",
+    name: "Tn. H. Sharul Mubarak",
     role: "Pasien Penanganan Saraf Terjepit BESS",
-    text: "Sudah berbulan-bulan menderita nyeri saraf pinggang menjalar ke kaki. Setelah tindakan BESS di RSI Muhammad Ali, hari kedua saya sudah bisa bangun dan berjalan tanpa nyeri. Terima kasih banyak tim dokter dan seluruh staf yang melayani dengan tulus!",
+    text: "Sudah berbulan-bulan menderita nyeri saraf pinggang yang menjalar ke kaki. Setelah tindakan BESS di RSI Muhammad Ali, hari kedua saya sudah bisa bangun dan berjalan tanpa rasa sakit. Terima kasih banyak tim dokter dan seluruh staf yang melayani dengan tulus dan penuh amanah.",
     image: "/images/testi-2.jpeg",
-    stars: 5
+    stars: 5,
+    verified: true,
   },
   {
     id: "testi-3",
-    name: "Ny. Dina Hanum",
-    role: "Pasien Rawat Inap & MCU Eksekutif",
-    text: "Kamar rawat inapnya sangat bersih, asri, dan nyaman serasa di hotel. Makanan gizinya halal, higienis, dan pelayanan perawat 24 jam sangat cepat tanggap. Sangat merekomendasikan RSI Muhammad Ali untuk keluarga.",
+    name: "Ny. Dina Hanum, M.Si",
+    role: "Pasien Rawat Inap & Persalinan ERACS",
+    text: "Kamar rawat inapnya sangat bersih, asri, dan nyaman serasa di hotel berbintang. Menu makanannya halal, bergizi, dan perawatnya sangat cepat tanggap. Persalinan ERACS berjalan lancar dan 6 jam kemudian saya sudah bisa bergerak mandiri.",
     image: "/images/testi-3.jpeg",
-    stars: 5
-  }
+    stars: 5,
+    verified: true,
+  },
+  {
+    id: "testi-4",
+    name: "Tn. Ahmad Fauzi",
+    role: "Pasien Medical Check Up Eksekutif",
+    text: "Alur Medical Check Up sangat rapi, one-stop service tanpa harus antre lama. Dokter pemeriksanya komunikatif dalam menjelaskan hasil dan memberikan rekomendasi pola hidup sehat. Rumah sakit yang sangat terpercaya untuk keluarga.",
+    image: "/images/testi-2.jpeg",
+    stars: 5,
+    verified: true,
+  },
 ];
 
 export const INSURANCE_PARTNERS = [
@@ -1036,5 +1715,5 @@ export const INSURANCE_PARTNERS = [
   "Chubb Life",
   "Great Eastern",
   "Zurich Insurance",
-  "Sequis Life"
+  "Sequis Life",
 ];

@@ -1,12 +1,15 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Logo } from "@/components/Logo";
 import {
   Phone,
   Mail,
   MapPin,
   ArrowUp,
+  ShieldAlert,
+  ExternalLink,
 } from "lucide-react";
 import { FacebookIcon, InstagramIcon, YoutubeIcon } from "@/components/SocialIcons";
 
@@ -19,13 +22,13 @@ export function Footer() {
     <footer id="kontak-lokasi" className="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800/80">
           {/* Col 1 & 2: Hospital Info */}
           <div className="lg:col-span-2 space-y-4">
             <Logo variant="white" />
 
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
-              Rumah Sakit Muhammad Ali adalah pusat layanan kesehatan terpadu dan modern di jantung Jakarta. Kami berkomitmen memberikan penanganan medis komprehensif, berbasis empati dan teknologi terkini.
+              Rumah Sakit Islam Muhammad Ali (RSI Muhammad Ali) adalah pusat layanan kesehatan modern berstandar internasional yang memadukan keunggulan klinis dengan nilai-nilai empati dan bimbingan syariah.
             </p>
 
             <div className="space-y-2 text-xs pt-1">
@@ -38,12 +41,12 @@ export function Footer() {
                 <span>Info & Pendaftaran: (021) 573 2241</span>
               </div>
               <div className="flex items-center gap-2.5 text-red-400 font-bold">
-                <Phone className="size-4 text-red-400 shrink-0" />
-                <span>UGD & Ambulans 24 Jam: (021) 573 2241</span>
+                <ShieldAlert className="size-4 text-red-400 shrink-0" />
+                <span>IGD & Ambulans 24 Jam: (021) 573 2241</span>
               </div>
               <div className="flex items-center gap-2.5 text-slate-300">
                 <Mail className="size-4 text-emerald-400 shrink-0" />
-                <span>info@rsmuhammadali.co.id</span>
+                <span>info@rsimuhammadali.co.id</span>
               </div>
             </div>
 
@@ -76,158 +79,152 @@ export function Footer() {
               >
                 <YoutubeIcon className="size-4" />
               </a>
+              <a
+                href="https://maps.google.com/?q=Rumah+Sakit+Jakarta"
+                target="_blank"
+                rel="noreferrer"
+                className="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-emerald-700 text-emerald-400 hover:text-white text-xs font-semibold flex items-center gap-1 transition-colors"
+              >
+                <span>Google Maps</span>
+                <ExternalLink className="size-3" />
+              </a>
             </div>
           </div>
 
-          {/* Col 3: Layanan Kesehatan */}
+          {/* Col 3: Navigasi Cepat */}
           <div className="space-y-3">
             <h4 className="font-bold text-white text-sm tracking-wide">
-              Layanan Penunjang
+              Navigasi Utama
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
-                <a href="#layanan-kesehatan" className="hover:text-emerald-400 transition-colors">
-                  Rawat Jalan Spesialis
-                </a>
+                <Link href="/" className="hover:text-emerald-400 transition-colors">
+                  Beranda
+                </Link>
               </li>
               <li>
-                <a href="#layanan-kesehatan" className="hover:text-emerald-400 transition-colors">
-                  Rawat Inap VVIP & VIP
-                </a>
+                <Link href="/tentang-kami" className="hover:text-emerald-400 transition-colors">
+                  Tentang Rumah Sakit
+                </Link>
               </li>
               <li>
-                <a href="#layanan-kesehatan" className="hover:text-emerald-400 transition-colors">
-                  Medical Check Up (MCU)
-                </a>
+                <Link href="/dokter" className="hover:text-emerald-400 transition-colors">
+                  Temukan Dokter Spesialis
+                </Link>
               </li>
               <li>
-                <a href="#layanan-kesehatan" className="hover:text-emerald-400 transition-colors">
-                  Unit Hemodialisa
-                </a>
+                <Link href="/layanan" className="hover:text-emerald-400 transition-colors">
+                  Layanan Medis Terpadu
+                </Link>
               </li>
               <li>
-                <a href="#layanan-kesehatan" className="hover:text-emerald-400 transition-colors">
-                  Laboratorium 24 Jam
-                </a>
+                <Link href="/fasilitas" className="hover:text-emerald-400 transition-colors">
+                  Fasilitas & Ruang Perawatan
+                </Link>
               </li>
               <li>
-                <a href="#layanan-kesehatan" className="hover:text-emerald-400 transition-colors">
-                  Kamar Operasi Modular
-                </a>
+                <Link href="/informasi-pasien" className="hover:text-emerald-400 transition-colors">
+                  Informasi & Panduan Pasien
+                </Link>
               </li>
               <li>
-                <a href="#layanan-kesehatan" className="hover:text-emerald-400 transition-colors">
-                  Radiologi & MRI 1.5T
-                </a>
-              </li>
-              <li>
-                <a href="#layanan-kesehatan" className="hover:text-emerald-400 transition-colors">
-                  Fisioterapi & Rehab Medik
-                </a>
+                <Link href="/kontak" className="hover:text-emerald-400 transition-colors">
+                  Kontak & Lokasi
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 4: Pusat Unggulan */}
+          {/* Col 4: Layanan Unggulan */}
           <div className="space-y-3">
             <h4 className="font-bold text-white text-sm tracking-wide">
-              Pusat Unggulan
+              Layanan Medis
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
-                <a href="#pusat-unggulan" className="hover:text-emerald-400 transition-colors">
-                  Muhammad Ali Eye Center
-                </a>
+                <Link href="/layanan/igd-24-jam" className="hover:text-emerald-400 transition-colors">
+                  IGD 24 Jam
+                </Link>
               </li>
               <li>
-                <a href="#pusat-unggulan" className="hover:text-emerald-400 transition-colors">
-                  Muhammad Ali Dental Clinic
-                </a>
+                <Link href="/layanan/poliklinik" className="hover:text-emerald-400 transition-colors">
+                  Poliklinik Spesialis
+                </Link>
               </li>
               <li>
-                <a href="#pusat-unggulan" className="hover:text-emerald-400 transition-colors">
-                  Muhammad Ali Orthopedic Center
-                </a>
+                <Link href="/layanan/rawat-inap" className="hover:text-emerald-400 transition-colors">
+                  Rawat Inap Suite & VIP
+                </Link>
               </li>
               <li>
-                <a href="#pusat-unggulan" className="hover:text-emerald-400 transition-colors">
-                  Brain & Spine Center (BESS)
-                </a>
+                <Link href="/layanan/laboratorium" className="hover:text-emerald-400 transition-colors">
+                  Laboratorium Patologi 24 Jam
+                </Link>
               </li>
               <li>
-                <a href="#pusat-unggulan" className="hover:text-emerald-400 transition-colors">
-                  Endoscopy Center
-                </a>
+                <Link href="/layanan/radiologi" className="hover:text-emerald-400 transition-colors">
+                  Radiologi, MRI & CT-Scan
+                </Link>
               </li>
               <li>
-                <a href="#pusat-unggulan" className="hover:text-emerald-400 transition-colors">
-                  Urology Center (ESWL)
-                </a>
+                <Link href="/layanan/farmasi" className="hover:text-emerald-400 transition-colors">
+                  Instalasi Farmasi 24 Jam
+                </Link>
               </li>
               <li>
-                <a href="#layanan-kesehatan" className="hover:text-emerald-400 transition-colors">
-                  Sports Medicine Clinic
-                </a>
+                <Link href="/layanan/medical-check-up" className="hover:text-emerald-400 transition-colors">
+                  Paket Medical Check Up (MCU)
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 5: Informasi & Pasien */}
+          {/* Col 5: Pasien & Akun */}
           <div className="space-y-3">
             <h4 className="font-bold text-white text-sm tracking-wide">
-              Informasi & Pasien
+              Layanan Pasien
             </h4>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
-                <a href="#tentang-kami" className="hover:text-emerald-400 transition-colors">
-                  Profil Rumah Sakit
-                </a>
+                <Link href="/buat-janji" className="hover:text-emerald-400 transition-colors font-bold text-emerald-400">
+                  Buat Janji Dokter Online
+                </Link>
               </li>
               <li>
-                <a href="#dokter-kami" className="hover:text-emerald-400 transition-colors">
-                  Jadwal Praktik Dokter
-                </a>
+                <Link href="/portal-pasien" className="hover:text-emerald-400 transition-colors">
+                  Portal Pasien & Hasil Lab
+                </Link>
               </li>
               <li>
-                <a href="#promo-paket" className="hover:text-emerald-400 transition-colors">
-                  Promo & Paket MCU
-                </a>
+                <Link href="/informasi-pasien#faq" className="hover:text-emerald-400 transition-colors">
+                  FAQ & Bantuan
+                </Link>
               </li>
               <li>
-                <a href="#artikel-kesehatan" className="hover:text-emerald-400 transition-colors">
-                  Artikel Kesehatan
-                </a>
+                <Link href="/informasi-pasien" className="hover:text-emerald-400 transition-colors">
+                  Panduan Alur BPJS
+                </Link>
               </li>
               <li>
-                <a href="#mitra-asuransi" className="hover:text-emerald-400 transition-colors">
-                  Mitra Asuransi & BPJS
-                </a>
-              </li>
-              <li>
-                <a href="#tentang-kami" className="hover:text-emerald-400 transition-colors">
-                  Indikator Mutu Nasional
-                </a>
-              </li>
-              <li>
-                <a href="#dokter-kami" className="hover:text-emerald-400 transition-colors">
-                  Portal Pasien & Janji Temu
-                </a>
+                <Link href="/artikel" className="hover:text-emerald-400 transition-colors">
+                  Artikel & Tips Kesehatan
+                </Link>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright & Back to Top */}
+        {/* Bottom Bar: Exact Copyright Requirement */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
-            <span>© 2026 Rumah Sakit Islam Muhammad Ali (RSI Muhammad Ali). Hak Cipta Dilindungi.</span>
+            <span>© 2026 Rumah Sakit Islam Muhammad Ali. All Rights Reserved.</span>
             <span className="hidden sm:inline">•</span>
-            <span className="text-emerald-400 font-semibold">Terkreditasi Paripurna KARS & Syariah</span>
+            <span className="text-emerald-400 font-semibold">Terkreditasi Paripurna KARS & Sertifikasi Syariah DSN-MUI</span>
           </div>
 
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-emerald-400 transition-colors border border-slate-800 text-xs"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-emerald-400 transition-colors border border-slate-800 text-xs cursor-pointer"
           >
             <span>Kembali ke Atas</span>
             <ArrowUp className="size-3.5" />

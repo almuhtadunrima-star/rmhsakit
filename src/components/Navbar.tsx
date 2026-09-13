@@ -2,30 +2,34 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Phone,
-  MapPin,
   Clock,
   Calendar,
   Menu,
   X,
-  ChevronDown,
   ShieldAlert,
+  Search,
+  User,
 } from "lucide-react";
 import { FacebookIcon, InstagramIcon, YoutubeIcon } from "@/components/SocialIcons";
 import { Logo } from "@/components/Logo";
+import { QuickSearchModal } from "@/components/QuickSearchModal";
 
 interface NavbarProps {
-  onOpenBooking: (prefillSpecialty?: string, prefillDoctor?: string) => void;
+  onOpenBooking?: (prefillSpecialty?: string, prefillDoctor?: string) => void;
 }
 
 export function Navbar({ onOpenBooking }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchModalOpen, setSearchModalOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 30) {
+      if (window.scrollY > 20) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -35,310 +39,246 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const navLinks = [
+    { label: "Beranda", href: "/" },
+    { label: "Tentang Kami", href: "/tentang-kami" },
+    { label: "Dokter", href: "/dokter" },
+    { label: "Layanan", href: "/layanan" },
+    { label: "Fasilitas", href: "/fasilitas" },
+    { label: "Informasi", href: "/informasi-pasien" },
+    { label: "Kontak", href: "/kontak" },
+  ];
+
   return (
-    <header className="w-full sticky top-0 z-40 bg-white transition-shadow duration-200">
-      {/* Top Notification / Contact Bar */}
-      <div className="bg-slate-900 text-slate-200 text-xs border-b border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-3">
-          {/* Left: Contact & Hours */}
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-            <a
-              href="tel:+62215732241"
-              className="flex items-center gap-1.5 hover:text-emerald-400 transition-colors font-medium"
-            >
-              <Phone className="size-3.5 text-emerald-400" />
-              <span>Info & Pendaftaran: (021) 573 2241</span>
-            </a>
-            <div className="hidden md:flex items-center gap-1.5 text-slate-400">
-              <Clock className="size-3.5 text-emerald-400" />
-              <span>UGD & Ambulans: 24 Jam Non-Stop</span>
-            </div>
-            <a
-              href="https://maps.google.com/?q=Rumah+Sakit+Jakarta"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden lg:flex items-center gap-1.5 hover:text-emerald-400 transition-colors text-slate-300"
-            >
-              <MapPin className="size-3.5 text-emerald-400" />
-              <span>Jl. Garnisun No. 1, Karet Semanggi, Jakarta Selatan</span>
-            </a>
-          </div>
-
-          {/* Right: Emergency Hotline & Socials */}
-          <div className="flex items-center gap-4 ml-auto sm:ml-0">
-            <a
-              href="tel:+62215732241"
-              className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-red-600 hover:bg-red-700 text-white font-bold text-[11px] animate-pulse transition-colors"
-            >
-              <ShieldAlert className="size-3" />
-              <span>DARURAT: (021) 573 2241</span>
-            </a>
-            <div className="hidden sm:flex items-center gap-2 text-slate-400 pl-2 border-l border-slate-700">
+    <>
+      <header className="w-full sticky top-0 z-40 bg-white/95 backdrop-blur-md transition-shadow duration-200">
+        {/* Top Notification / Emergency Bar */}
+        <div className="bg-slate-900 text-slate-200 text-xs border-b border-slate-800">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-3">
+            {/* Left: Contact & Hours */}
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6">
               <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-emerald-400 transition-colors"
-                aria-label="Facebook"
+                href="tel:+62215732241"
+                className="flex items-center gap-1.5 hover:text-emerald-400 transition-colors font-medium"
               >
-                <FacebookIcon className="size-3.5" />
+                <Phone className="size-3.5 text-emerald-400" />
+                <span>Info & Pendaftaran: (021) 573 2241</span>
               </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-emerald-400 transition-colors"
-                aria-label="Instagram"
-              >
-                <InstagramIcon className="size-3.5" />
-              </a>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-emerald-400 transition-colors"
-                aria-label="YouTube"
-              >
-                <YoutubeIcon className="size-3.5" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Navbar */}
-      <div
-        className={`w-full bg-white border-b transition-all duration-200 ${
-          isScrolled
-            ? "border-slate-200 shadow-md py-2.5"
-            : "border-slate-100 py-3.5"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
-          {/* Logo */}
-          <Link href="/" className="shrink-0">
-            <Logo variant="color" />
-          </Link>
-
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 text-[14px] font-semibold text-slate-700">
-            {/* Beranda */}
-            <Link
-              href="/"
-              className="px-3 py-2 rounded-lg hover:text-[#00874e] hover:bg-emerald-50/70 transition-colors"
-            >
-              Beranda
-            </Link>
-
-            {/* Layanan */}
-            <div className="relative group">
-              <Link
-                href="/#layanan-kesehatan"
-                className="flex items-center gap-1 px-3 py-2 rounded-lg hover:text-[#00874e] hover:bg-emerald-50/70 transition-colors"
-              >
-                <span>Layanan</span>
-                <ChevronDown className="size-4 opacity-70 group-hover:rotate-180 transition-transform duration-200" />
-              </Link>
-
-              <div className="absolute top-full left-0 w-80 bg-white shadow-xl rounded-xl border border-slate-100 p-3 hidden group-hover:block z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-2 py-1 mb-1">
-                  Layanan & Fasilitas Medis
-                </div>
-                <div className="grid grid-cols-2 gap-1 text-xs">
-                  <Link
-                    href="/#layanan-kesehatan"
-                    className="p-2 rounded-lg hover:bg-emerald-50 hover:text-[#00874e] transition-colors"
-                  >
-                    Rawat Jalan
-                  </Link>
-                  <Link
-                    href="/#layanan-kesehatan"
-                    className="p-2 rounded-lg hover:bg-emerald-50 hover:text-[#00874e] transition-colors"
-                  >
-                    Rawat Inap
-                  </Link>
-                  <Link
-                    href="/#layanan-kesehatan"
-                    className="p-2 rounded-lg hover:bg-emerald-50 hover:text-[#00874e] transition-colors"
-                  >
-                    Medical Check Up
-                  </Link>
-                  <Link
-                    href="/#layanan-kesehatan"
-                    className="p-2 rounded-lg hover:bg-emerald-50 hover:text-[#00874e] transition-colors"
-                  >
-                    Hemodialisa
-                  </Link>
-                  <Link
-                    href="/#layanan-kesehatan"
-                    className="p-2 rounded-lg hover:bg-emerald-50 hover:text-[#00874e] transition-colors"
-                  >
-                    Laboratorium 24 Jam
-                  </Link>
-                  <Link
-                    href="/#layanan-kesehatan"
-                    className="p-2 rounded-lg hover:bg-emerald-50 hover:text-[#00874e] transition-colors"
-                  >
-                    Kamar Operasi
-                  </Link>
-                  <Link
-                    href="/#pusat-unggulan"
-                    className="p-2 rounded-lg hover:bg-emerald-50 hover:text-[#00874e] transition-colors font-medium text-emerald-700"
-                  >
-                    Eye Center
-                  </Link>
-                  <Link
-                    href="/#pusat-unggulan"
-                    className="p-2 rounded-lg hover:bg-emerald-50 hover:text-[#00874e] transition-colors font-medium text-blue-700"
-                  >
-                    Brain & Spine
-                  </Link>
-                </div>
+              <div className="hidden md:flex items-center gap-1.5 text-slate-400">
+                <Clock className="size-3.5 text-emerald-400" />
+                <span>UGD & Ambulans: 24 Jam Nonstop</span>
               </div>
             </div>
 
-            {/* Dokter */}
-            <Link
-              href="/dokter"
-              className="px-3 py-2 rounded-lg hover:text-[#00874e] hover:bg-emerald-50/70 transition-colors flex items-center gap-1.5"
-            >
-              <span>Dokter</span>
-              <span className="px-1.5 py-0.5 text-[10px] font-bold bg-emerald-100 text-emerald-800 rounded-full">
-                12 Spesialis
-              </span>
-            </Link>
-
-            {/* Jadwal */}
-            <Link
-              href="/dokter#jadwal-filter"
-              className="px-3 py-2 rounded-lg hover:text-[#00874e] hover:bg-emerald-50/70 transition-colors"
-            >
-              Jadwal
-            </Link>
-
-            {/* Tentang Kami */}
-            <Link
-              href="/#tentang-kami"
-              className="px-3 py-2 rounded-lg hover:text-[#00874e] hover:bg-emerald-50/70 transition-colors"
-            >
-              Tentang Kami
-            </Link>
-
-            {/* Kontak */}
-            <Link
-              href="/#kontak-lokasi"
-              className="px-3 py-2 rounded-lg hover:text-[#00874e] hover:bg-emerald-50/70 transition-colors"
-            >
-              Kontak
-            </Link>
-          </nav>
-
-          {/* Desktop Right CTA Buttons */}
-          <div className="hidden sm:flex items-center gap-2.5">
-            <button
-              onClick={() => onOpenBooking()}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white font-bold text-sm shadow-sm hover:shadow-md transition-all active:scale-[0.98]"
-            >
-              <Calendar className="size-4" />
-              <span>Buat Janji</span>
-            </button>
+            {/* Right: Emergency Hotline & Socials */}
+            <div className="flex items-center gap-4 ml-auto sm:ml-0">
+              <a
+                href="tel:+62215732241"
+                className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-red-600 hover:bg-red-700 text-white font-bold text-[11px] transition-colors shadow-xs"
+              >
+                <ShieldAlert className="size-3" />
+                <span>IGD 24 JAM: (021) 573 2241</span>
+              </a>
+              <div className="hidden sm:flex items-center gap-2 text-slate-400 pl-2 border-l border-slate-700">
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-emerald-400 transition-colors"
+                  aria-label="Facebook"
+                >
+                  <FacebookIcon className="size-3.5" />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-emerald-400 transition-colors"
+                  aria-label="Instagram"
+                >
+                  <InstagramIcon className="size-3.5" />
+                </a>
+                <a
+                  href="https://youtube.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-emerald-400 transition-colors"
+                  aria-label="YouTube"
+                >
+                  <YoutubeIcon className="size-3.5" />
+                </a>
+              </div>
+            </div>
           </div>
+        </div>
 
-          {/* Mobile Hamburger Button */}
-          <div className="flex items-center gap-2 lg:hidden">
-            <button
-              onClick={() => onOpenBooking()}
-              className="px-3.5 py-2 text-xs font-bold text-white bg-[#00874e] rounded-lg shadow-sm"
-            >
-              Buat Janji
-            </button>
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-slate-700 hover:text-[#00874e] rounded-lg border border-slate-200 focus:outline-none"
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? (
-                <X className="size-5" />
+        {/* Main Navbar */}
+        <div
+          className={`w-full bg-white border-b transition-all duration-200 ${
+            isScrolled
+              ? "border-slate-200/90 shadow-sm py-2.5"
+              : "border-slate-100 py-3.5"
+          }`}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+            {/* Left: Hospital Logo + Name */}
+            <Link href="/" className="shrink-0 flex items-center gap-3">
+              <Logo variant="color" />
+            </Link>
+
+            {/* Center: Desktop Navigation Links */}
+            <nav className="hidden xl:flex items-center gap-1 2xl:gap-2 text-[14px] font-semibold text-slate-700">
+              {navLinks.map((link) => {
+                const isActive =
+                  link.href === "/"
+                    ? pathname === "/"
+                    : pathname.startsWith(link.href);
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`px-3 py-2 rounded-xl transition-colors ${
+                      isActive
+                        ? "text-emerald-800 bg-emerald-50/80 font-bold"
+                        : "hover:text-emerald-800 hover:bg-slate-50"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            {/* Right: Search, Login, and CTA */}
+            <div className="flex items-center gap-2 sm:gap-3">
+              {/* Search Icon Trigger */}
+              <button
+                onClick={() => setSearchModalOpen(true)}
+                className="p-2 sm:px-2.5 sm:py-2 text-slate-600 hover:text-emerald-800 hover:bg-emerald-50/70 rounded-xl border border-slate-200 transition-colors flex items-center gap-2 text-xs font-medium"
+                aria-label="Buka Pencarian"
+                title="Pencarian Cepat (Ctrl+K)"
+              >
+                <Search className="size-4" />
+                <span className="hidden md:inline text-slate-400">Cari...</span>
+                <kbd className="hidden lg:inline px-1.5 py-0.5 text-[10px] bg-slate-100 text-slate-500 rounded border border-slate-200">
+                  ⌘K
+                </kbd>
+              </button>
+
+              {/* Daftar / Login */}
+              <Link
+                href="/portal-pasien"
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-slate-700 hover:text-emerald-800 hover:bg-slate-50 text-xs sm:text-sm font-semibold transition-colors"
+              >
+                <User className="size-4 text-emerald-700" />
+                <span>Daftar / Login</span>
+              </Link>
+
+              {/* Primary CTA: Buat Janji */}
+              {onOpenBooking ? (
+                <button
+                  onClick={() => onOpenBooking()}
+                  className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-700 via-teal-800 to-emerald-800 hover:from-emerald-800 hover:to-teal-900 text-white font-bold text-xs sm:text-sm shadow-sm hover:shadow-md transition-all active:scale-[0.98] cursor-pointer"
+                >
+                  <Calendar className="size-4" />
+                  <span>Buat Janji</span>
+                </button>
               ) : (
-                <Menu className="size-5" />
+                <Link
+                  href="/buat-janji"
+                  className="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-700 via-teal-800 to-emerald-800 hover:from-emerald-800 hover:to-teal-900 text-white font-bold text-xs sm:text-sm shadow-sm hover:shadow-md transition-all active:scale-[0.98]"
+                >
+                  <Calendar className="size-4" />
+                  <span>Buat Janji</span>
+                </Link>
               )}
-            </button>
+
+              {/* Mobile Hamburger Button */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="xl:hidden p-2 text-slate-700 hover:text-emerald-800 rounded-xl border border-slate-200 hover:bg-slate-50 focus:outline-none"
+                aria-label="Toggle menu"
+              >
+                {mobileMenuOpen ? (
+                  <X className="size-5" />
+                ) : (
+                  <Menu className="size-5" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 max-h-[85vh] overflow-y-auto space-y-4 animate-in slide-in-from-top-2 duration-150">
-          <div className="space-y-1 text-sm font-semibold text-slate-800 divide-y divide-slate-100">
-            <Link
-              href="/"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2.5 rounded-lg hover:bg-emerald-50 hover:text-[#00874e]"
-            >
-              Beranda
-            </Link>
-            <Link
-              href="/#layanan-kesehatan"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2.5 rounded-lg hover:bg-emerald-50 hover:text-[#00874e]"
-            >
-              Layanan Medis & Fasilitas
-            </Link>
-            <Link
-              href="/dokter"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-emerald-50 hover:text-[#00874e] font-bold text-emerald-700"
-            >
-              <span>Dokter Spesialis</span>
-              <span className="text-[11px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-bold">
-                12 Dokter
-              </span>
-            </Link>
-            <Link
-              href="/dokter#jadwal-filter"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2.5 rounded-lg hover:bg-emerald-50 hover:text-[#00874e]"
-            >
-              Jadwal Praktik Dokter
-            </Link>
-            <Link
-              href="/#tentang-kami"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2.5 rounded-lg hover:bg-emerald-50 hover:text-[#00874e]"
-            >
-              Tentang Kami & Sertifikasi Syariah
-            </Link>
-            <Link
-              href="/#kontak-lokasi"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2.5 rounded-lg hover:bg-emerald-50 hover:text-[#00874e]"
-            >
-              Kontak & Lokasi RSI Muhammad Ali
-            </Link>
-          </div>
+        {/* Mobile Drawer Menu */}
+        {mobileMenuOpen && (
+          <div className="xl:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 max-h-[85vh] overflow-y-auto space-y-4 animate-in slide-in-from-top-2 duration-150">
+            <div className="space-y-1 text-sm font-semibold text-slate-800 divide-y divide-slate-100">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`block px-3 py-2.5 rounded-xl transition-colors ${
+                    pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href))
+                      ? "text-emerald-800 bg-emerald-50 font-bold"
+                      : "hover:bg-slate-50"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
 
-          <div className="pt-2 border-t border-slate-100 flex flex-col gap-2.5">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenBooking();
-              }}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-700 text-white font-bold text-sm shadow-sm flex items-center justify-center gap-2"
-            >
-              <Calendar className="size-4" />
-              <span>Buat Janji Dokter Online</span>
-            </button>
-            <a
-              href="tel:+62215732241"
-              className="w-full py-2.5 rounded-xl bg-red-600 text-white font-bold text-center text-xs flex items-center justify-center gap-2"
-            >
-              <ShieldAlert className="size-4" />
-              <span>UGD Darurat 24 Jam: (021) 573 2241</span>
-            </a>
+              <Link
+                href="/portal-pasien"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center gap-2 px-3 py-2.5 rounded-xl hover:bg-slate-50 text-slate-700"
+              >
+                <User className="size-4 text-emerald-700" />
+                <span>Portal Pasien (Daftar / Login)</span>
+              </Link>
+            </div>
+
+            <div className="pt-2 border-t border-slate-100 flex flex-col gap-2.5">
+              {onOpenBooking ? (
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenBooking();
+                  }}
+                  className="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-700 to-teal-800 text-white font-bold text-sm shadow-sm flex items-center justify-center gap-2"
+                >
+                  <Calendar className="size-4" />
+                  <span>Buat Janji Dokter Online</span>
+                </button>
+              ) : (
+                <Link
+                  href="/buat-janji"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-700 to-teal-800 text-white font-bold text-sm shadow-sm flex items-center justify-center gap-2"
+                >
+                  <Calendar className="size-4" />
+                  <span>Buat Janji Dokter Online</span>
+                </Link>
+              )}
+
+              <a
+                href="tel:+62215732241"
+                className="w-full py-2.5 rounded-xl bg-red-600 text-white font-bold text-center text-xs flex items-center justify-center gap-2"
+              >
+                <ShieldAlert className="size-4" />
+                <span>IGD Darurat 24 Jam: (021) 573 2241</span>
+              </a>
+            </div>
           </div>
-        </div>
-      )}
-    </header>
+        )}
+      </header>
+
+      {/* Global Quick Search Modal */}
+      <QuickSearchModal
+        isOpen={searchModalOpen}
+        onClose={() => setSearchModalOpen(false)}
+        onOpenBooking={onOpenBooking}
+      />
+    </>
   );
 }

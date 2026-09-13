@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { MobileBottomNav } from "@/components/MobileBottomNav";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -42,8 +43,9 @@ export default function RootLayout({
       lang="id"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-white text-slate-900 selection:bg-emerald-100 selection:text-emerald-900">
+      <body className="min-h-full flex flex-col font-sans bg-white text-slate-900 selection:bg-emerald-100 selection:text-emerald-900 pb-16 lg:pb-0">
         {children}
+        <MobileBottomNav />
       </body>
     </html>
   );

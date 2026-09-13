@@ -2,16 +2,19 @@
 
 import React, { useState } from "react";
 import { Navbar } from "@/components/Navbar";
-import { HeroSlider } from "@/components/HeroSlider";
+import { HeroSection } from "@/components/HeroSection";
+import { StatisticsSection } from "@/components/StatisticsSection";
 import { QuickActionCards } from "@/components/QuickActionCards";
 import { DoctorSearchSection } from "@/components/DoctorSearchSection";
 import { CenterOfExcellence } from "@/components/CenterOfExcellence";
-import { ServicesSection } from "@/components/ServicesSection";
+import { ServicesOverviewSection } from "@/components/ServicesOverviewSection";
+import { IslamicValuesSection } from "@/components/IslamicValuesSection";
+import { FacilitiesSection } from "@/components/FacilitiesSection";
 import { PromoSection } from "@/components/PromoSection";
+import { PatientInfoSection } from "@/components/PatientInfoSection";
 import { ArticleSection } from "@/components/ArticleSection";
 import { TestimonialVideoSection } from "@/components/TestimonialVideoSection";
 import { InsurancePartners } from "@/components/InsurancePartners";
-import { AboutSection } from "@/components/AboutSection";
 import { EmergencyBanner } from "@/components/EmergencyBanner";
 import { Footer } from "@/components/Footer";
 import { BookingModal } from "@/components/BookingModal";
@@ -30,49 +33,58 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-slate-900">
-      {/* Navigation Header */}
+      {/* Sticky Header Navigation */}
       <Navbar onOpenBooking={handleOpenBooking} />
 
       {/* Main Content Sections */}
       <main className="flex-1">
-        {/* Hero Slider */}
-        <HeroSlider onOpenBooking={() => handleOpenBooking()} />
+        {/* Hero Section: Pelayanan Kesehatan Modern, Dengan Nilai Islami */}
+        <HeroSection onOpenBooking={() => handleOpenBooking()} />
+
+        {/* Statistics Metric Counters */}
+        <StatisticsSection />
 
         {/* Floating Quick Action Cards */}
         <QuickActionCards onOpenBooking={() => handleOpenBooking()} />
 
-        {/* Doctor Search & Schedule Section */}
+        {/* Doctor Search & Discovery: Temukan Dokter */}
         <DoctorSearchSection onOpenBooking={handleOpenBooking} />
 
         {/* Centers of Excellence */}
         <CenterOfExcellence onOpenBooking={handleOpenBooking} />
 
-        {/* Medical Services & Facilities */}
-        <ServicesSection onOpenBooking={(s) => handleOpenBooking(s)} />
+        {/* Medical Services: 12 Services Overview */}
+        <ServicesOverviewSection onOpenBooking={(s) => handleOpenBooking(s)} />
 
-        {/* Promo & MCU Packages */}
+        {/* Islamic Values Section: Merawat Dengan Profesional, Melayani Dengan Amanah */}
+        <IslamicValuesSection />
+
+        {/* Hospital Facilities: Large Visual Cards */}
+        <FacilitiesSection />
+
+        {/* Promo & Medical Packages */}
         <PromoSection onOpenBooking={(p) => handleOpenBooking("Medical Check Up", p)} />
 
-        {/* Patient Experience & Video Testimonials */}
+        {/* Patient Experience & Verified Testimonials */}
         <TestimonialVideoSection />
 
-        {/* Educational Health Articles */}
+        {/* Patient Information Hub & Interactive FAQs */}
+        <PatientInfoSection />
+
+        {/* Health Articles & Educational News */}
         <ArticleSection />
 
-        {/* About Hospital, History, Accreditation */}
-        <AboutSection />
-
-        {/* Insurance Partners */}
+        {/* Insurance Partners & BPJS */}
         <InsurancePartners />
 
-        {/* Emergency & Ambulance Banner */}
+        {/* Emergency Callout: IGD 24 Jam */}
         <EmergencyBanner />
       </main>
 
-      {/* Footer */}
+      {/* Comprehensive Footer */}
       <Footer />
 
-      {/* Booking Appointment Modal Wizard */}
+      {/* 6-Step Booking Appointment Modal */}
       <BookingModal
         key={`${prefillSpecialty}-${prefillDoctor}-${bookingModalOpen}`}
         isOpen={bookingModalOpen}
@@ -81,7 +93,7 @@ export default function Home() {
         prefillDoctor={prefillDoctor}
       />
 
-      {/* Floating WhatsApp & Emergency Triggers */}
+      {/* Floating WhatsApp & Emergency Contact Button */}
       <FloatingActions />
     </div>
   );
