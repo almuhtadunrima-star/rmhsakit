@@ -126,8 +126,8 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
               <Logo variant="color" />
             </Link>
 
-            {/* Center: Desktop Navigation Links */}
-            <nav className="hidden xl:flex items-center gap-1 2xl:gap-2 text-[14px] font-semibold text-slate-700">
+            {/* Center: Desktop Navigation Links (Ronas IT Floating Pill Bar) */}
+            <nav className="hidden xl:flex items-center gap-1 p-1 bg-slate-100/80 rounded-full border border-slate-200/70 text-[13.5px] font-semibold text-slate-700">
               {navLinks.map((link) => {
                 const isActive =
                   link.href === "/"
@@ -137,10 +137,10 @@ export function Navbar({ onOpenBooking }: NavbarProps) {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`px-3 py-2 rounded-xl transition-colors ${
+                    className={`px-3.5 py-1.5 rounded-full transition-all ${
                       isActive
-                        ? "text-emerald-800 bg-emerald-50/80 font-bold"
-                        : "hover:text-emerald-800 hover:bg-slate-50"
+                        ? "text-emerald-900 bg-white shadow-xs font-bold"
+                        : "hover:text-emerald-800 hover:bg-white/60"
                     }`}
                   >
                     {link.label}

@@ -4,10 +4,11 @@ import React, { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { HeroSection } from "@/components/HeroSection";
 import { StatisticsSection } from "@/components/StatisticsSection";
-import { QuickActionCards } from "@/components/QuickActionCards";
+import { WhyChooseUsSection } from "@/components/WhyChooseUsSection";
 import { DoctorSearchSection } from "@/components/DoctorSearchSection";
 import { CenterOfExcellence } from "@/components/CenterOfExcellence";
 import { ServicesOverviewSection } from "@/components/ServicesOverviewSection";
+import { ConsultationBanner } from "@/components/ConsultationBanner";
 import { IslamicValuesSection } from "@/components/IslamicValuesSection";
 import { FacilitiesSection } from "@/components/FacilitiesSection";
 import { PromoSection } from "@/components/PromoSection";
@@ -38,23 +39,26 @@ export default function Home() {
 
       {/* Main Content Sections */}
       <main className="flex-1">
-        {/* Hero Section: Pelayanan Kesehatan Modern, Dengan Nilai Islami */}
-        <HeroSection onOpenBooking={() => handleOpenBooking()} />
+        {/* Hero Section: Pelayanan Kesehatan Modern, Dengan Nilai Islami (Ronas IT Layout) */}
+        <HeroSection onOpenBooking={(s, d) => handleOpenBooking(s, d)} />
 
         {/* Statistics Metric Counters */}
         <StatisticsSection />
 
-        {/* Floating Quick Action Cards */}
-        <QuickActionCards onOpenBooking={() => handleOpenBooking()} />
+        {/* Why Choose Us: Asymmetric Experience & Excellence Showcase (Ronas IT Layout) */}
+        <WhyChooseUsSection onOpenBooking={() => handleOpenBooking()} />
+
+        {/* Medical Services: 12 Services Overview with Category Filter Pills */}
+        <ServicesOverviewSection onOpenBooking={(s) => handleOpenBooking(s)} />
 
         {/* Doctor Search & Discovery: Temukan Dokter */}
         <DoctorSearchSection onOpenBooking={handleOpenBooking} />
 
+        {/* Consultation CTA Banner (Ronas IT Curved Banner) */}
+        <ConsultationBanner onOpenBooking={() => handleOpenBooking()} />
+
         {/* Centers of Excellence */}
         <CenterOfExcellence onOpenBooking={handleOpenBooking} />
-
-        {/* Medical Services: 12 Services Overview */}
-        <ServicesOverviewSection onOpenBooking={(s) => handleOpenBooking(s)} />
 
         {/* Islamic Values Section: Merawat Dengan Profesional, Melayani Dengan Amanah */}
         <IslamicValuesSection />

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { EmergencyBanner } from "@/components/EmergencyBanner";
+import { ConsultationBanner } from "@/components/ConsultationBanner";
 import { BookingModal } from "@/components/BookingModal";
 import { FloatingActions } from "@/components/FloatingActions";
 import { SERVICES_DATA } from "@/data/hospitalData";
@@ -175,6 +176,9 @@ export default function LayananPage() {
             ))}
           </div>
         </div>
+
+        {/* Consultation CTA Banner */}
+        <ConsultationBanner onOpenBooking={() => setBookingModalOpen(true)} />
 
         <EmergencyBanner />
       </main>

@@ -26,7 +26,7 @@ export function DoctorCard({ doctor, onSelectDoctor, onOpenBooking }: DoctorCard
   const isAvailableToday = doctor.status === "available_today";
 
   return (
-    <div className="group bg-white rounded-2xl border border-slate-200/90 hover:border-emerald-400/80 shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between overflow-hidden relative">
+    <div className="group bg-white rounded-3xl border border-slate-200/90 hover:border-emerald-400/80 shadow-xs hover:shadow-xl transition-all duration-200 flex flex-col justify-between overflow-hidden relative">
       {/* Top Header Accent line */}
       <div className="h-1 w-full bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-700" />
 
@@ -173,7 +173,7 @@ export function DoctorCard({ doctor, onSelectDoctor, onOpenBooking }: DoctorCard
 
         <button
           onClick={() => onOpenBooking(doctor.specialty, doctor.name)}
-          className="w-full py-2.5 px-3 rounded-xl bg-[#00874e] hover:bg-[#00703f] text-white font-bold text-xs sm:text-sm text-center shadow-xs hover:shadow transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-98"
+          className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-emerald-700 to-teal-800 hover:from-emerald-800 hover:to-teal-900 text-white font-bold text-xs sm:text-sm text-center shadow-xs hover:shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer active:scale-98"
         >
           <Calendar className="size-3.5" />
           <span>Buat Janji</span>

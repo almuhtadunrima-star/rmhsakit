@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { DoctorSearchSection } from "@/components/DoctorSearchSection";
+import { ConsultationBanner } from "@/components/ConsultationBanner";
 import { EmergencyBanner } from "@/components/EmergencyBanner";
 import { Footer } from "@/components/Footer";
 import { BookingModal } from "@/components/BookingModal";
@@ -54,6 +55,9 @@ export default function DokterPage() {
 
         {/* Doctor Search & Filter Section */}
         <DoctorSearchSection onOpenBooking={handleOpenBooking} />
+
+        {/* Consultation CTA Banner */}
+        <ConsultationBanner onOpenBooking={() => handleOpenBooking()} />
 
         {/* Emergency Callout */}
         <EmergencyBanner />
