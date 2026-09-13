@@ -209,8 +209,8 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://daftar.rsjakarta.co.id" className="hover:text-emerald-400 transition-colors">
-                  Portal Pasien Online
+                <a href="#dokter-kami" className="hover:text-emerald-400 transition-colors">
+                  Portal Pasien & Janji Temu
                 </a>
               </li>
             </ul>
@@ -220,9 +220,9 @@ export function Footer() {
         {/* Bottom Bar: Copyright & Back to Top */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
-            <span>© 2026 RS Muhammad Ali (Dahulu RS Jakarta). Hak Cipta Dilindungi Undang-Undang.</span>
+            <span>© 2026 Rumah Sakit Islam Muhammad Ali (RSI Muhammad Ali). Hak Cipta Dilindungi.</span>
             <span className="hidden sm:inline">•</span>
-            <span className="text-emerald-400 font-semibold">Terkreditasi Paripurna KARS</span>
+            <span className="text-emerald-400 font-semibold">Terkreditasi Paripurna KARS & Syariah</span>
           </div>
 
           <button

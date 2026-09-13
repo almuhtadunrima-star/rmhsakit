@@ -13,19 +13,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "RS Muhammad Ali - Pusat Layanan Kesehatan Terpadu & Terpercaya",
+  title: "Rumah Sakit Islam Muhammad Ali (RSI Muhammad Ali) - Pelayanan Kesehatan Islami, Modern & Terpercaya",
   description:
-    "Website resmi Rumah Sakit Muhammad Ali dengan 120+ dokter spesialis & subspesialis, Centers of Excellence, UGD 24 Jam (021) 573 2241, dan pendaftaran janji temu dokter online.",
+    "Website resmi Rumah Sakit Islam Muhammad Ali (RSI Muhammad Ali). Layanan dokter spesialis & subspesialis terpadu, Pusat Unggulan Medis, UGD 24 Jam (021) 573 2241, dan pendaftaran janji temu dokter online dengan prinsip Syariah & standar internasional.",
   keywords: [
+    "Rumah Sakit Islam Muhammad Ali",
+    "RSI Muhammad Ali",
     "RS Muhammad Ali",
-    "Rumah Sakit Muhammad Ali",
     "Dokter Spesialis",
+    "Jadwal Dokter",
+    "Rumah Sakit Syariah",
     "UGD 24 Jam",
     "Eye Center",
     "Orthopedic Center",
     "Brain and Spine Center",
     "Endoskopi BESS",
-    "MCU",
     "Medical Check Up",
   ],
 };

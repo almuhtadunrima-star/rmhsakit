@@ -10,43 +10,43 @@ export function Logo({ variant = "color", className = "" }: LogoProps) {
 
   return (
     <div className={`flex items-center gap-3 select-none ${className}`}>
-      {/* SVG Icon Emblem */}
+      {/* SVG Icon Emblem with Islamic Medical Identity */}
       <div className="relative flex items-center justify-center shrink-0">
         <svg
-          width="46"
-          height="46"
+          width="48"
+          height="48"
           viewBox="0 0 100 100"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           className="drop-shadow-sm"
         >
-          {/* Outer Ring / Crescent */}
+          {/* Outer Ring / Crescent Symbolism */}
           <circle
             cx="50"
             cy="50"
-            r="44"
-            stroke={isWhite ? "#ffffff" : "#00874e"}
-            strokeWidth="4"
-            strokeDasharray="6 3"
-            opacity="0.85"
-          />
-          {/* Inner Shield / Hexagon Shape */}
-          <path
-            d="M50 14L80 28V52C80 70 50 86 50 86C50 86 20 70 20 52V28L50 14Z"
-            fill={isWhite ? "rgba(255, 255, 255, 0.15)" : "#e8f5e9"}
+            r="45"
             stroke={isWhite ? "#ffffff" : "#00874e"}
             strokeWidth="3"
+            strokeDasharray="8 4"
+            opacity="0.85"
+          />
+          {/* Octagon / Islamic Star Frame */}
+          <path
+            d="M36 14L64 14L86 36L86 64L64 86L36 86L14 64L14 36L36 14Z"
+            fill={isWhite ? "rgba(255, 255, 255, 0.12)" : "#ecfdf5"}
+            stroke={isWhite ? "#ffffff" : "#00874e"}
+            strokeWidth="2.5"
           />
           {/* Medical Cross */}
           <path
-            d="M44 32H56V44H68V56H56V68H44V56H32V44H44V32Z"
+            d="M44 30H56V44H70V56H56V70H44V56H30V44H44V30Z"
             fill={isWhite ? "#ffffff" : "#00874e"}
           />
-          {/* Heart / Care Accent in center */}
+          {/* Center Warm Heart/Care Accent */}
           <circle
             cx="50"
             cy="50"
-            r="4"
+            r="4.5"
             fill={isWhite ? "#fcd34d" : "#f59e0b"}
           />
         </svg>
@@ -56,19 +56,19 @@ export function Logo({ variant = "color", className = "" }: LogoProps) {
       <div className="flex flex-col">
         <div className="flex items-baseline gap-1.5">
           <span
-            className={`font-black text-xl tracking-tight ${
+            className={`font-black text-lg sm:text-xl tracking-tight leading-none ${
               isWhite ? "text-white" : "text-[#00874e]"
             }`}
           >
-            RS MUHAMMAD ALI
+            RSI MUHAMMAD ALI
           </span>
         </div>
         <span
-          className={`text-[10px] uppercase font-semibold tracking-wider ${
-            isWhite ? "text-emerald-100/80" : "text-slate-500"
+          className={`text-[10px] uppercase font-semibold tracking-wider mt-1 ${
+            isWhite ? "text-emerald-100/90" : "text-slate-500"
           }`}
         >
-          Melayani Dengan Hati
+          Rumah Sakit Islam • Melayani dengan Ikhlas
         </span>
       </div>
     </div>
